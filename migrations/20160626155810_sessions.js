@@ -2,8 +2,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('sessions', function(table){
     table.increments('id').primary();
-    table.string('student').references('users.id').notNullable();
-    table.string('mentor').references('users.id').notNullable();
+    table.integer('student').references('users.id').notNullable();
+    table.integer('mentor').references('users.id').notNullable();
     table.integer('rating');
     table.string('comment');
     table.enu('type', ['teach', 'review']).notNullable();
