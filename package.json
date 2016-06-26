@@ -1,0 +1,46 @@
+{
+  "name": "q2-project",
+  "version": "1.0.0",
+  "description": "A application that brings programmers together to learn from and mentor eachother.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l4nk332/q2-project.git"
+  },
+  "keywords": [
+    "code",
+    "review",
+    "mentor",
+    "learn",
+    "programming",
+    "languages",
+    "teach"
+  ],
+  "author": "Yeshe Wingerd, Omar Sobh, Ian Jabour",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/l4nk332/q2-project/issues"
+  },
+  "homepage": "https://github.com/l4nk332/q2-project#readme",
+  "dependencies": {
+    "auth0": "^2.3.0",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "express-generator": "^4.13.4",
+    "express-session": "^1.13.0",
+    "knex": "^0.11.7",
+    "morgan": "^1.7.0",
+    "pg": "^6.0.1",
+    "pug": "^2.0.0-beta3",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
