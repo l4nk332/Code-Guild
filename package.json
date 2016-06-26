@@ -4,8 +4,7 @@
   "description": "A application that brings programmers together to learn from and mentor eachother.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha""start",
-    "nodemon ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
