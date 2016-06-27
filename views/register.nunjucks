@@ -46,6 +46,11 @@
                     <h4 class="text-uppercase font-bold m-b-0">Register</h4>
                 </div>
                 <div class="panel-body">
+                  {% if error %}
+                  <div class="alert alert-danger" role="alert">
+                    <span>{{error}}</span>
+                  </div>
+                  {% endif %}
                     <form class="form-horizontal m-t-10" method="post" action="/register">
 
 						<div class="form-group ">
