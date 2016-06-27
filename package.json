@@ -27,6 +27,7 @@
   "homepage": "https://github.com/l4nk332/q2-project#readme",
   "dependencies": {
     "auth0": "^2.3.0",
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
