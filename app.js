@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var connect = require('./routes/connect');
 var about = require('./routes/about');
 var login = require('./routes/login')
+var about = require('./routes/about');
+var register = require('./routes/register')
 var app = express();
 var dotenv = require('dotenv').load();
 // view engine setup
@@ -33,7 +35,9 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/about', about);
+app.use('/register', register);
 app.use('/connect', connect);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
