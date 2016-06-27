@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css">
 
-    <title>Audio+Video+TextChat+FileSharing using RTCMultiConnection</title>
+    <title>Audio+Video+TextChat+FileSharing</title>
 
     <style>
         video {
@@ -35,6 +34,7 @@
 
 <body>
     <article>
+
         <blockquote>
             Mesh networking model is used to implement many-to-many video/data connection.<br>
             All users can watch each other; all of them can speak as well.<br>
@@ -67,16 +67,16 @@
         </section>
 
         <!-- <script src="/dist/rmc3.min.js"></script> -->
-        <script src="https://cdn.webrtc-experiment.com:443/rmc3.min.js"></script>
+        <script src="js/rmc3.min.js"></script>
 
         <!-- custom layout for HTML5 audio/video elements -->
-        <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
+        <script src="js/getHTMLMediaElement.js"></script>
         
         <!-- <script src="/dev/FileBufferReader.js"></script> -->
-        <script src="https://cdn.webrtc-experiment.com:443/rmc3.fbr.min.js"></script>
+        <script src="js/rmc3.fbr.min.js"></script>
 
         <!-- socket.io for signaling -->
-        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/socket.io.js"></script>
 
         <script>
             // ......................................................
@@ -161,10 +161,10 @@
             var connection = new RTCMultiConnection();
 
             // by default, socket.io server is assumed to be deployed on your own URL
-            connection.socketURL = '/';
+            //connection.socketURL = '/connect';
 
             // comment-out below line if you do not have your own socket.io server
-            // connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+            connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
             connection.socketMessageEvent = 'audio-video-file-chat-demo';
 
@@ -329,34 +329,8 @@
             }
         </script>
 
-        <section class="experiment" id="demos"><details><summary style="text-align:center;">Check 31 other RTCMultiConnection-v3 demos</summary><h2 style="text-align:center;display:block;"><a href="https://www.npmjs.com/package/rtcmulticonnection-v3"><img src="https://img.shields.io/npm/v/rtcmulticonnection-v3.svg"></a><a href="https://www.npmjs.com/package/rtcmulticonnection-v3"><img src="https://img.shields.io/npm/dm/rtcmulticonnection-v3.svg"></a><a href="https://travis-ci.org/muaz-khan/RTCMultiConnection"><img src="https://travis-ci.org/muaz-khan/RTCMultiConnection.png?branch=master"></a></h2><ol><li><a href="/demos/Audio+ScreenSharing.html">Audio+ScreenSharing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Audio+ScreenSharing.html">Source</a>)</li><li><a href="/demos/Audio+Video+TextChat+FileSharing.html">Audio+Video+TextChat+FileSharing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Audio+Video+TextChat+FileSharing.html">Source</a>)</li><li><a href="/demos/Audio-Conferencing.html">Audio-Conferencing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Audio-Conferencing.html">Source</a>)</li><li><a href="/demos/Cross-Domain-Screen-Capturing.html">Cross-Domain-Screen-Capturing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Cross-Domain-Screen-Capturing.html">Source</a>)</li><li><a href="/demos/Disconnect+Rejoin.html">Disconnect+Rejoin.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Disconnect+Rejoin.html">Source</a>)</li><li><a href="/demos/Files-Scalable-Broadcast.html">Files-Scalable-Broadcast.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Files-Scalable-Broadcast.html">Source</a>)</li><li><a href="/demos/Firebase-Demo.html">Firebase-Demo.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Firebase-Demo.html">Source</a>)</li><li><a href="/demos/Password-Protected-Rooms.html">Password-Protected-Rooms.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Password-Protected-Rooms.html">Source</a>)</li><li><a href="/demos/PubNub-Demo.html">PubNub-Demo.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/PubNub-Demo.html">Source</a>)</li><li><a href="/demos/Scalable-Broadcast.html">Scalable-Broadcast.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Scalable-Broadcast.html">Source</a>)</li><li><a href="/demos/Scalable-Screen-Broadcast.html">Scalable-Screen-Broadcast.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Scalable-Screen-Broadcast.html">Source</a>)</li><li><a href="/demos/Scalable-Screen-plus-Audio-Broadcast.html">Scalable-Screen-plus-Audio-Broadcast.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Scalable-Screen-plus-Audio-Broadcast.html">Source</a>)</li><li><a href="/demos/StreamHasData.html">StreamHasData.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/StreamHasData.html">Source</a>)</li><li><a href="/demos/TextChat+FileSharing.html">TextChat+FileSharing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/TextChat+FileSharing.html">Source</a>)</li><li><a href="/demos/Video-Conferencing.html">Video-Conferencing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Video-Conferencing.html">Source</a>)</li><li><a href="/demos/Video-Scalable-Broadcast.html">Video-Scalable-Broadcast.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/Video-Scalable-Broadcast.html">Source</a>)</li><li><a href="/demos/addStream-in-Chat-room.html">addStream-in-Chat-room.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/addStream-in-Chat-room.html">Source</a>)</li><li><a href="/demos/admin-guest.html">admin-guest.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/admin-guest.html">Source</a>)</li><li><a href="/demos/applyConstraints.html">applyConstraints.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/applyConstraints.html">Source</a>)</li><li><a href="/demos/change-resolutions.html">change-resolutions.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/change-resolutions.html">Source</a>)</li><li><a href="/demos/checkPresence.html">checkPresence.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/checkPresence.html">Source</a>)</li><li><a href="/demos/custom-socket-event.html">custom-socket-event.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/custom-socket-event.html">Source</a>)</li><li><a href="/demos/file-sharing.html">file-sharing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/file-sharing.html">Source</a>)</li><li><a href="/demos/getPublicModerators.html">getPublicModerators.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/getPublicModerators.html">Source</a>)</li><li><a href="/demos/replaceTrack.html">replaceTrack.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/replaceTrack.html">Source</a>)</li><li><a href="/demos/screen-sharing.html">screen-sharing.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/screen-sharing.html">Source</a>)</li><li><a href="/demos/share-part-of-screen.html">share-part-of-screen.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/share-part-of-screen.html">Source</a>)</li><li><a href="/demos/switch-cameras.html">switch-cameras.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/switch-cameras.html">Source</a>)</li><li><a href="/demos/video-broadcasting.html">video-broadcasting.html</a> (<a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/demos/video-broadcasting.html">Source</a>)</li><ol></details></section><section class="experiment" id="docs"><h2><a href="#docs">Documentation</a></h2><ol><li><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/docs/README.md">README.md</a></li><li><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/docs/api.md">api.md</a></li><li><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/docs/how-to-use.md">how-to-use.md</a></li><li><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/docs/installation-guide.md">installation-guide.md</a></li><li><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/docs/ios-android.md">ios-android.md</a></li><li><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/docs/tips-tricks.md">tips-tricks.md</a></li><li><a href="https://github.com/muaz-khan/RTCMultiConnection/tree/master/docs/upgrade.md">upgrade.md</a></li></ol></section><section class="experiment own-widgets latest-commits">
-            <h2 class="header" id="updates" style="color: red;padding-bottom: .1em;"><a href="https://github.com/muaz-khan/RTCMultiConnection/commits/master">Latest Updates</a></h2>
-            <div id="github-commits"></div>
-        </section>
-
-        <section class="experiment own-widgets">
-            <h2 class="header" id="updates" style="color: red;padding-bottom: .1em;"><a href="https://github.com/muaz-khan/RTCMultiConnection/issues">Latest Issues</a></h2>
-            <div id="github-issues"></div>
-        </section>
-
-        <section class="experiment">
-            <h2 class="header" id="feedback">Feedback</h2>
-            <div>
-                <textarea id="message" style="height: 8em; margin: .2em; width: 98%; border: 1px solid rgb(189, 189, 189); outline: none; resize: vertical;" placeholder="Have any message? Suggestions or something went wrong?"></textarea>
-            </div>
-            <button id="send-message" style="font-size: 1em;">Send Message</button><small style="margin-left:1em;">Enter your email too; if you want "direct" reply!</small>
-        </section>
-
-        <a href="https://github.com/muaz-khan/RTCMultiConnection" class="fork-left"></a>
-
-        <script>
-            window.useThisGithubPath = 'muaz-khan/RTCMultiConnection';
-        </script>
-        <script src="https://cdn.webrtc-experiment.com/commits.js" async></script>
 
     </article>
-
-
 
 </body>
 

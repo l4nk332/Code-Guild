@@ -15,6 +15,9 @@ var about = require('./routes/about');
 var register = require('./routes/register')
 var app = express();
 var dotenv = require('dotenv').load();
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'nunjucks');
