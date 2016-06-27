@@ -1,0 +1,15 @@
+{% extends "template.nunjucks" %}
+{% block body %}
+<div class="main">
+    <div class="section">
+        <div class="container"> 
+<!--         usage row -->
+            <div class="row tim-row">
+                <h4 class="text-center">Welcome to the CodeGuild</h4> 
+                </div>
+              
+        </div>
+            </div>        
+        </div>
+</div>
+{% endblock %}

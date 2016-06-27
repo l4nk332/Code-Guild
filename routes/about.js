@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('connect.nunjucks', { title: 'Code Guild' });
+  res.render('about.nunjucks', { title: 'Code Guild' });
 });
 
 module.exports = router;
