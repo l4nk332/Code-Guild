@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
 var knex = require('../db/knex');
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
@@ -16,12 +18,10 @@ router.post('/', function (req, res) {
     console.log('results.length is: ' + results.length)
     if (results.length === 0) {
       knex('users').insert({ username: req.body.newUsername , password: hash, email: req.body.newEmail }).returning('id').then(function (user){
-          console.log('login matched and a success! User id is: ' + user);
           req.session.user = user;
-          // res.redirect('/user/' + user);')
+          res.redirect('/users');
       })
     } else {
-      console.log('username already exists yo!')
       res.render('register.nunjucks', { error: 'Username already exists, please try again' });
     }
   })

@@ -30,7 +30,12 @@
                     <h4 class="text-uppercase font-bold m-b-0">Sign In</h4>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal m-t-10" action="index.html">
+                  {% if error %}
+                  <div class="alert alert-danger" role="alert">
+                    <span>{{error}}</span>
+                  </div>
+                  {% endif %}
+                    <form class="form-horizontal m-t-10" method="post" action="/login">
 
                         <div class="form-group ">
                             <div class="col-xs-12">
