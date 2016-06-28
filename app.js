@@ -49,20 +49,25 @@ app.get('/firepad/:id', function(req, res, next) {
 	res.render('firepad.nunjucks', {id: req.params.id});
 });
 
+var loggedInUsers = {};
 
-app.post('/session', function(req, res, next) {
-  var sessReqSocket = io.of(`/${req.body.teacher}`);
+io.on('connection', function (socket) {
 
-  io.on('connection', function(socket){
-    socket.on('session request', function(id, msg){
-      socket.broadcast.to(id).emit('my message', msg);
+  socket.on("user logged in", function (username) {
+    loggedInUsers[username] = socket.id;
+
+    socket.on('request session', function(teacherName, studentName){
+      var socketId = loggedInUsers[teacherName];
+      socket.broadcast.to(socketId).emit('session query', studentName);
     });
-  });
-  sessReqSocket.on('connection', function(socket){
-    console.log('someone connected'):
-  });
-  socket.broadcast.to(socketid).emit('message', 'for your eyes only');
-})
+
+    socket.on('disconnect', function (socket) {
+      users.splice(users.indexOf(user), 1);
+
+      io.emit('chatroom users', users);
+    });
+  })
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

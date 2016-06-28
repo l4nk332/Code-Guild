@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
         if (user.length !== 0) {
             var hash = bcrypt.hashSync(req.body.password, 8);
             if (bcrypt.compareSync(req.body.password, user[0].password)) {
-                req.session.user = user[0].username;
+                req.session.username = user[0].username;
                 console.log('password matched!')
                 res.redirect(`/users/${user[0].username}`);
             } else {
