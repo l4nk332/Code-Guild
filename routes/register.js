@@ -7,6 +7,9 @@ var cookieSession = require('cookie-session');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
+  if (req.session.username) {
+    res.redirect(`/users/${req.session.username}`);
+  }
   res.render('register.nunjucks', { title: 'CodeGuild' });
 });
 
