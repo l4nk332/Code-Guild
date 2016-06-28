@@ -9,11 +9,11 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
       database: 'code_guild',
-      user:     'username',
-      password: 'password'
+      user:     'root',
+      password: process.env.DBPASSWORD
     },
     pool: {
       min: 2,
