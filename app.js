@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var connect = require('./routes/connect');
@@ -15,8 +14,6 @@ var about = require('./routes/about');
 var register = require('./routes/register')
 var app = express();
 var dotenv = require('dotenv').load();
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
