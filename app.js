@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 var routes = require('./routes/index');
@@ -30,6 +31,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieSession({
+  name: 'session',
+  keys: [
+    process.env.SESSION_KEY1,
+    process.env.SESSION_KEY2,
+    process.env.SESSION_KEY3
+  ]}));
 
 app.use('/', routes);
 app.use('/users', users);
@@ -37,6 +45,9 @@ app.use('/login', login);
 app.use('/about', about);
 app.use('/register', register);
 app.use('/connect', connect);
+app.get('/firepad/:id', function(req, res, next) {
+	res.render('firepad.nunjucks', {id: req.params.id});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
