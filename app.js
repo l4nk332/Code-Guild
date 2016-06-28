@@ -49,6 +49,21 @@ app.get('/firepad/:id', function(req, res, next) {
 	res.render('firepad.nunjucks', {id: req.params.id});
 });
 
+
+app.post('/session', function(req, res, next) {
+  var sessReqSocket = io.of(`/${req.body.teacher}`);
+
+  io.on('connection', function(socket){
+    socket.on('session request', function(id, msg){
+      socket.broadcast.to(id).emit('my message', msg);
+    });
+  });
+  sessReqSocket.on('connection', function(socket){
+    console.log('someone connected'):
+  });
+  socket.broadcast.to(socketid).emit('message', 'for your eyes only');
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
