@@ -45,6 +45,9 @@ app.use('/login', login);
 app.use('/about', about);
 app.use('/register', register);
 app.use('/connect', connect);
+app.get('/firepad/:id', function(req, res, next) {
+	res.render('firepad.nunjucks', {id: req.params.id});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
