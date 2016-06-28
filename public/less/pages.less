@@ -476,7 +476,7 @@ File: Pages
 
 .legend {
   table{
-    background-color: @lightdark;
+    background-color: @white;
   }
   tr {
    height: 22px;
@@ -538,7 +538,7 @@ File: Pages
     stroke: darken(@lightdark,10%);
 }
 .ct-chart .ct-series.ct-series-d .ct-bar, .ct-chart .ct-series.ct-series-d .ct-line, .ct-chart .ct-series.ct-series-d .ct-point, .ct-chart .ct-series.ct-series-d .ct-slice-donut {
-    stroke: @success;
+    stroke: @primary;
 }
 .ct-chart .ct-series.ct-series-e .ct-bar, .ct-chart .ct-series.ct-series-e .ct-line, .ct-chart .ct-series.ct-series-e .ct-point, .ct-chart .ct-series.ct-series-e .ct-slice-donut {
     stroke: @dark;
@@ -547,7 +547,7 @@ File: Pages
     stroke: #90caf9;
 }
 .ct-chart .ct-series.ct-series-g .ct-bar, .ct-chart .ct-series.ct-series-g .ct-line, .ct-chart .ct-series.ct-series-g .ct-point, .ct-chart .ct-series.ct-series-g .ct-slice-donut {
-    stroke: @primary;
+    stroke: @success;
 }
 .ct-series-a .ct-area, .ct-series-a .ct-slice-pie {
     fill: @custom;
@@ -559,7 +559,7 @@ File: Pages
     fill: darken(@lightdark,10%);
 }
 .ct-series-d .ct-area, .ct-series-d .ct-slice-pie {
-    fill: @success;
+    fill: @primary;
 }
 .chartist-tooltip {
   position: absolute;
@@ -665,6 +665,20 @@ File: Pages
 
   .logo {
     float: none;
+    color: @dark !important;
+    font-size: 24px;
+    letter-spacing: .06em;
+    line-height: 46px;
+
+    span {
+      span {
+        color: @custom;
+      }
+    }
+  }
+
+  h5{
+    font-size: 12px;
   }
 }
 

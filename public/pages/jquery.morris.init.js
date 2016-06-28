@@ -102,7 +102,7 @@
             data: data,
             resize: true, //defaulted to true
             colors: colors,
-            backgroundColor: '#f5f5f5'
+            backgroundColor: '#fff'
         });
     },
     MorrisCharts.prototype.init = function() {

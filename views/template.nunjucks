@@ -5,9 +5,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="images/favicon.ico">
-
-        <%title%>
-
         <!--Morris Chart CSS -->
         <link href="plugins/morris/morris.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -39,7 +36,7 @@
                             <!-- End navigation menu  -->
                      
                         <ul class="nav navbar-nav navbar-right pull-right">
-                         <li><a href="login" class="logo">
+                         <li><a href="login">
                             <span style="color:grey">Login</span>
                         </a>
                         </li>
@@ -144,7 +141,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-6">
-                                2016 © Flacto.
+                                2016 © CodeGuild.
                             </div>
                             <div class="col-xs-6">
                                 <ul class="pull-right list-inline m-b-0">

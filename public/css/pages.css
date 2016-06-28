@@ -429,7 +429,7 @@ a.editable-click:hover {
   border-radius: 3px;
 }
 .legend table {
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 .legend tr {
   height: 22px;
@@ -495,7 +495,7 @@ a.editable-click:hover {
 .ct-chart .ct-series.ct-series-d .ct-line,
 .ct-chart .ct-series.ct-series-d .ct-point,
 .ct-chart .ct-series.ct-series-d .ct-slice-donut {
-  stroke: #3ec845;
+  stroke: #4667cc;
 }
 .ct-chart .ct-series.ct-series-e .ct-bar,
 .ct-chart .ct-series.ct-series-e .ct-line,
@@ -513,7 +513,7 @@ a.editable-click:hover {
 .ct-chart .ct-series.ct-series-g .ct-line,
 .ct-chart .ct-series.ct-series-g .ct-point,
 .ct-chart .ct-series.ct-series-g .ct-slice-donut {
-  stroke: #4667cc;
+  stroke: #3ec845;
 }
 .ct-series-a .ct-area,
 .ct-series-a .ct-slice-pie {
@@ -529,7 +529,7 @@ a.editable-click:hover {
 }
 .ct-series-d .ct-area,
 .ct-series-d .ct-slice-pie {
-  fill: #3ec845;
+  fill: #4667cc;
 }
 .chartist-tooltip {
   position: absolute;
@@ -625,6 +625,16 @@ a.editable-click:hover {
 }
 .logo-alt-box .logo {
   float: none;
+  color: #435966 !important;
+  font-size: 24px;
+  letter-spacing: .06em;
+  line-height: 46px;
+}
+.logo-alt-box .logo span span {
+  color: #57c5a5;
+}
+.logo-alt-box h5 {
+  font-size: 12px;
 }
 .user-thumb {
   position: relative;

@@ -1,6 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
 @import url(https://fonts.googleapis.com/css?family=Karla:400,700);
-@import url(https://fonts.googleapis.com/css?family=Rancho);
 /*
 Template Name: Flacto Dashboard
 Author: CoderThemes
@@ -23,7 +22,7 @@ File: Core
 ============= */
 body {
   background: #f5f5f5;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Arimo', sans-serif;
   margin: 0;
   padding-bottom: 60px;
   overflow-x: hidden;
@@ -42,6 +41,7 @@ h5,
 h6 {
   color: #505458;
   margin: 10px 0;
+  font-weight: 700;
 }
 h1 {
   line-height: 43px;
@@ -89,7 +89,7 @@ a:focus {
   text-decoration: none;
 }
 .container {
-  width: 95%;
+  width: auto;
 }
 .container-alt {
   margin-left: auto;
@@ -125,7 +125,7 @@ a:focus {
   font-weight: 600;
   margin-bottom: 0px;
   margin-top: 0px;
-  line-height: 80px;
+  line-height: 42px;
   font-family: 'Karla', sans-serif;
 }
 .page-header {
@@ -334,12 +334,13 @@ a:focus {
 /* Card Box */
 .card-box {
   padding: 20px;
+  background-color: #ffffff;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -moz-border-radius: 5px;
   background-clip: padding-box;
   margin-bottom: 20px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #e8e8e8;
 }
 .card-box .card-drop {
   color: #9a9da0;
@@ -445,10 +446,14 @@ a:focus {
   padding-left: 10px;
   padding-right: 10px;
 }
+.nav-pills-custom {
+  margin-bottom: 20px;
+}
 .nav-pills-custom li a {
   padding: 5px 18px;
   border-radius: 20px;
-  color: #57c5a5;
+  color: #57c5a5 !important;
+  line-height: 28px !important;
 }
 .nav-pills-custom li.active a {
   background-color: #ffffff !important;
@@ -480,7 +485,8 @@ a:focus {
 }
 .dropdown-menu > li > a:focus,
 .dropdown-menu > li > a:hover {
-  background-color: rgba(87, 197, 165, 0.1) !important;
+  background-color: #57c5a5 !important;
+  color: #ffffff;
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
@@ -574,10 +580,10 @@ textarea.form-control {
   min-height: 90px;
 }
 .form-control {
-  background-color: #f5f5f5 !important;
-  border: 1px solid #cfcfcf;
+  background-color: #ffffff !important;
+  border: 1px solid #dcdcdc;
   border-radius: 4px;
-  color: #565656;
+  color: #435966;
   padding: 7px 12px;
   height: 38px;
   max-width: 100%;
@@ -633,7 +639,7 @@ fieldset[disabled] .form-control {
 }
 /* Labels */
 .label {
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.05em;
   padding: .3em .6em .3em;
 }
@@ -721,7 +727,7 @@ fieldset[disabled] .form-control {
 .pagination > li > a,
 .pagination > li > span {
   color: #435966;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 .pagination > li > a:hover,
 .pagination > li > span:hover,
@@ -757,7 +763,7 @@ fieldset[disabled] .form-control {
   -webkit-border-radius: 3px;
   border-radius: 3px;
   color: #435966;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 .pager .disabled > a,
 .pager .disabled > a:focus,
@@ -774,16 +780,18 @@ fieldset[disabled] .form-control {
 /* Tabs */
 .tab-content {
   padding: 20px;
-  border: 2px solid #e8e8e8;
+  border: 1px solid #e8e8e8;
   border-top: none;
+  background-color: #ffffff;
 }
 .nav-tabs {
-  border-bottom: 2px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 .nav-tabs > li > a {
   padding: 12px 18px;
-  color: #435966;
-  font-weight: 500;
+  color: #435966 !important;
+  font-weight: 700;
+  line-height: 22px;
 }
 .nav-tabs > li {
   margin-bottom: -2px;
@@ -791,9 +799,9 @@ fieldset[disabled] .form-control {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover {
-  border: 2px solid #e8e8e8;
+  border: 1px solid #e8e8e8;
   border-bottom: transparent;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus {
@@ -802,12 +810,12 @@ fieldset[disabled] .form-control {
 .nav-tabs.nav-justified > .active > a,
 .nav-tabs.nav-justified > .active > a:focus,
 .nav-tabs.nav-justified > .active > a:hover {
-  border: 2px solid #e8e8e8;
+  border: 1px solid #e8e8e8;
 }
 .nav .open > a,
 .nav .open > a:focus,
 .nav .open > a:hover {
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   border-color: #e8e8e8;
 }
 /* List group */
@@ -969,8 +977,8 @@ fieldset[disabled] .form-control {
 }
 .input-group-addon {
   border-radius: 2px;
-  background-color: #cfcfcf;
-  border: 1px solid #cfcfcf;
+  background-color: #e8e8e8;
+  border: 1px solid #e8e8e8;
 }
 /* Tooltips */
 .tooltip-inner {
