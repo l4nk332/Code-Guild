@@ -92,7 +92,7 @@
             //connection.socketURL = '/';
 
             // comment-out below line if you do not have your own socket.io server
-            connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+            connection.socketURL = 'http://localhost/';
 
             connection.socketMessageEvent = 'audio-conference-demo';
 
