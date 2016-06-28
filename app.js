@@ -14,7 +14,6 @@ var login = require('./routes/login')
 var about = require('./routes/about');
 var register = require('./routes/register')
 var app = express();
-var dotenv = require('dotenv').load();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
