@@ -22,6 +22,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.css" />
 
+		<!-- Load CodeMirror mode/theme -->
+		<link rel='stylesheet' href="/css/theme/midnight.css" />
+		<script src="/js/mode/javascript.js"></script>
+
 		<!-- Firepad -->
 		<link rel="stylesheet" href="/css/firepad.css" />
 		<script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
@@ -31,13 +35,7 @@
 			.firepad {
 			  width: 700px;
 			  height: 450px;
-			  background-color: #1abc9c;
-				color: #2c3e50;
-			}
-
-			.CodeMirror {
-			  background-color: #1abc9c;
-				color: #2c3e50;
+			  margin: auto;
 			}
 		</style>
 	</head>
@@ -47,7 +45,8 @@
 			  var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ id }}');
 			  var codeMirror = CodeMirror(document.getElementById('firepad'), {
 					lineWrapping: false,
-					mode: {name: "javascript", json: true},
+					mode: "javascript",
+					theme: 'midnight',
 					smartIndent: true,
 					lineNumbers: true,
 					fixedGutter: false,
