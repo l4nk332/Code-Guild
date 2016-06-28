@@ -27,18 +27,18 @@ File: Responsive
   .enlarged .left.side-menu {
     margin-left: -75px;
   }
+  .logo span {
+    display: none !important;
+  }
+  .icon-c-logo {
+    display: block !important;
+    line-height: 60px;
+  }
   .topbar-left {
     width: 70px !important;
   }
   .content-page .content {
-    margin-top: 95px;
-  }
-  .topbar .topbar-left {
-    height: 75px;
-  }
-  .navbar-default {
-    background-color: #ffffff;
-    box-shadow: 0 0px 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+    margin-top: 60px;
   }
   .navbar-nav {
     margin: 0px;
@@ -122,9 +122,6 @@ File: Responsive
   .container-alt {
     width: 750px;
   }
-  .nav-tabs.nav-justified > li > a {
-    border-bottom: 2px solid #e8e8e8;
-  }
   .nav-tabs.nav-justified > .active > a,
   .nav-tabs.nav-justified > .active > a:focus,
   .nav-tabs.nav-justified > .active > a:hover {
@@ -156,5 +153,8 @@ File: Responsive
   }
   .footer ul li a {
     font-size: 11px;
+  }
+  .page-title {
+    margin-bottom: 10px;
   }
 }

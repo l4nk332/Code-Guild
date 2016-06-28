@@ -40,20 +40,23 @@ File: Responsive
       margin-left: -75px;
     }
   }
+  .logo {
+    span {
+      display: none !important;
+    }
+  }
+  .icon-c-logo {
+    display: block !important;
+    line-height: 60px;
+  }
+
   .topbar-left {
     width: 70px !important;
   }
   .content-page .content {
-    margin-top: 95px;
-  }
-  .topbar .topbar-left {
-    height: 75px;
+    margin-top: 60px;
   }
 
-  .navbar-default {
-    background-color: @white;
-    box-shadow: 0 0px 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
-  }
   .navbar-nav {
     margin: 0px;
     display: inline-block;
@@ -161,10 +164,6 @@ File: Responsive
     width: 750px;
   }
 
-  .nav-tabs.nav-justified>li>a {
-    border-bottom: 2px solid darken(@lightdark,5%);
-  }
-
   .nav-tabs.nav-justified > .active > a, .nav-tabs.nav-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:hover {
     border-bottom-color: @lightdark;
   }
@@ -196,6 +195,9 @@ File: Responsive
   }
   .footer ul li a {
     font-size: 11px;
+  }
+  .page-title {
+    margin-bottom: 10px;
   }
 }
 

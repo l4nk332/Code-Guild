@@ -655,7 +655,7 @@ File: Components
   border: 1px solid #dcdcdc;
   margin-bottom: 20px;
   box-shadow: none;
-  background-color: transparent;
+  background-color: #ffffff;
 }
 .panel .panel-body {
   padding: 20px;
@@ -825,13 +825,14 @@ File: Components
 /* Panel tabs */
 .panel-tabs .nav-pills li a {
   background-color: transparent !important;
-  font-weight: 500;
+  font-weight: 700;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   color: #ffffff !important;
+  line-height: 40px;
 }
 .panel-tabs .nav-pills li.active a {
-  background-color: #f5f5f5 !important;
+  background-color: #ffffff !important;
   color: #435966 !important;
 }
 .panel-tabs .tab-content {
@@ -843,8 +844,9 @@ File: Components
   padding: 8px 14px;
   font-size: 13px;
   background-color: transparent !important;
-  font-weight: 500;
+  font-weight: 700;
   color: #435966 !important;
+  line-height: 18px;
 }
 .card-tabs .nav-pills li.active a {
   background-color: #57c5a5 !important;
@@ -863,6 +865,7 @@ File: Components
   border-radius: 5px;
   -moz-border-radius: 5px;
   background-clip: padding-box;
+  background-color: #ffffff;
   -webkit-transition: opacity 3s ease-in-out;
   -moz-transition: opacity 3s ease-in-out;
   -ms-transition: opacity 3s ease-in-out;
@@ -1072,7 +1075,7 @@ File: Components
 .table > thead > tr.active > th,
 .table > tbody > tr.active > th,
 .table > tfoot > tr.active > th {
-  background-color: #ededed !important;
+  background-color: #f9f9f9 !important;
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -1082,7 +1085,7 @@ File: Components
 .table > tfoot > tr > td,
 .table > thead > tr > th,
 .table-bordered {
-  border-top: 1px solid #dcdcdc;
+  border-top: 1px solid #e0e0e0;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -1090,11 +1093,11 @@ File: Components
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #dcdcdc;
+  border: 1px solid #e0e0e0;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 2px solid #dcdcdc;
+  border-bottom: 2px solid #e0e0e0;
 }
 tbody {
   color: #797979;

@@ -339,8 +339,8 @@
 		var downloads = [[0, 5], [1, 12], [2, 4], [3, 3], [4, 12], [5, 11], [6, 14],[7, 12], [8, 8], [9, 4], [10, 8]];
 		var plabels = ["Revenue", "Sales"];
 		var pcolors = ['#ddd', '#57c5a5'];
-		var borderColor = '#eee';
-		var bgColor = '#f5f5f5';
+		var borderColor = '#f9f9f9';
+		var bgColor = '#fff';
 		this.createPlotGraph("#website-stats", uploads, downloads, plabels, pcolors, borderColor, bgColor);
 
 		//Pie graph data
