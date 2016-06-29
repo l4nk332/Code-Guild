@@ -11,7 +11,7 @@ Quarter 2 Project involving live code tutoring
 - [x] O create base templates
 - [x] Y setup basic signup and login
 - [x] I setup basic text editor
-- [ ] setup 1 to 1 video/audio
+- [x] setup 1 to 1 video/audio
 - [ ] setup page with form once user signs up, to add profile info (topics, interests, excels, bio, photo,etc)
 - [ ] finish setting up landing page for user once logged in
     - [ ] filters other users by availability, who excel in this user's interest, shows if they are available

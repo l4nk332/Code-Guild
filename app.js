@@ -66,10 +66,14 @@ io.on('connection', function (socket) {
       socket.broadcast.to(socketId).emit('session query', studentName);
     });
 
-    socket.on('disconnect', function (socket) {
-      users.splice(users.indexOf(user), 1);
+    socket.on('status change', function(availability){
+      socket.broadcast.emit('status change', availability);
+    });
 
-      io.emit('chatroom users', users);
+    socket.on('disconnect', function (socket) {
+      delete loggedInUsers[username];
+
+      io.emit('logged out', username);
     });
   })
 });
