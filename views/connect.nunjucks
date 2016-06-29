@@ -41,7 +41,7 @@
 
 <body>
 	 <header id="topnav">
-            <div class="topbar-main">
+            <div class="navbar-defaultult">
                 <div class="container">
                     <div class="topbar-left">
                         <a href="index" class="logo">
@@ -51,28 +51,7 @@
                 </div>
             </div>    
     </header> 
-    
-    <div class="wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <ul class="nav nav-pills nav-pills-custom display-xs-none pull-right m-t-25">
-                            <li role="presentation"><a href="#">Today</a></li>
-                            <li role="presentation" class="active"><a href="#">Yesterday</a></li>
-                            <li role="presentation"><a href="#">Last Week</a></li>
-                        </ul>
 
-                        <h4 class="page-title">Dashboard</h4>
-                    </div>
-                </div>
-            </div>
-    </div>
-    
-    
-    
-    
-    
-    
 <article>
         <section class="experiment">
             <div class="make-center">
@@ -408,6 +387,43 @@
 			  margin: auto;
 			          }
 		    </style>
+		     <!-- Load Firebase Project -->
+        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyAHGAcseCSmhX8vIff6T3cuN2KZMYiXrdI",
+            authDomain: "firepad-test-37da6.firebaseapp.com",
+            databaseURL: "https://firepad-test-37da6.firebaseio.com",
+            storageBucket: "firepad-test-37da6.appspot.com",
+          };
+          firebase.initializeApp(config);
+        </script>
+		    
+		            <!-- CodeMirror -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.css" />
+
+        <!-- Load CodeMirror mode/theme -->
+        <link rel='stylesheet' href="/css/theme/midnight.css" />
+        <script src="/js/mode/javascript.js"></script>
+
+        <!-- Firepad -->
+        <link rel="stylesheet" href="/css/firepad.css" />
+        <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
+        <!-- <script src="/dist/rmc3.min.js"></script> -->
+        <script src="/js/rmc3.min.js"></script>
+
+        <!-- custom layout for HTML5 audio/video elements -->
+        <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
+        
+        <!-- <script src="/dev/FileBufferReader.js"></script> -->
+        <script src="/js/rmc3.fbr.min.js"></script>
+
+        <!-- socket.io for signaling -->
+        <script src="/js/socket.io.js"></script>
+		    
+		    
 		<!-- jQuery  -->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
