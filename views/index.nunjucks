@@ -338,17 +338,9 @@
         <script src="/js/jquery.nicescroll.js"></script>
         <script src="/js/jquery.scrollTo.min.js"></script>
 
-        <!--Morris Chart-->
-		<script src="/plugins/morris/morris.min.js"></script>
-		<script src="/plugins/raphael/raphael-min.js"></script>
-
         <!-- Counter Up  -->
         <script src="/plugins/waypoints/lib/jquery.waypoints.js"></script>
         <script src="/plugins/counterup/jquery.counterup.min.js"></script>
-
-        <!-- Dashboard init -->
-        <script src="/pages/jquery.dashboard.js"></script>
-
 
         <!-- App js -->
         <script src="/js/jquery.core.js"></script>
