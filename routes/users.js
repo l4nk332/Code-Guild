@@ -15,17 +15,14 @@ router.get('/:username', function(req, res, next) {
           interests = interests.map(function(curObj) {
             return curObj.id;
           });
-          console.log('interest 1 is: ' + interests);
           // Select recommended users with titles and ids of what they excel at (matching to an array of ids)
             knex('u').distinct('u.username')
               .select('u.id', 'u.first_name', 'u.last_name', 'u.auth_acct', 'u.bio', 'u.available')
-              .from('users as u').avg('s.rating')
+              .from('users as u')
               .join('interests_excels as i_e', 'i_e.user_id', '=', 'u.id')
               .join('topics as t', 't.id', '=', 'i_e.topic_id')
-              .join('sessions as s', 's.mentor', '=', 'u.id')
               .whereIn('t.id', interests)
               .whereNot('u.username', '=', req.session.username)
-              .groupBy('u.id', 't.id')
               .then(function(recommendedUsers) {
                 res.json(recommendedUsers);
               })
