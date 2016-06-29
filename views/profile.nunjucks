@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/images/favicon.ico">
+		<title>CodeGuild - Landing Page</title>
+        <!--Morris Chart CSS -->
+		<link rel="stylesheet" href="/plugins/morris/morris.css">
+
+		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="/css/pages.css" rel="stylesheet" type="text/css" />
+    <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
+		<script src="/js/jquery.min.js"></script>
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script src="/js/modernizr.min.js"></script>
+		<style>
+			#submitButton {
+				margin-top: 45px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Top Bar Start -->
+		<div class="topbar">
+
+				<!-- LOGO -->
+				<div class="topbar-left">
+						<div class="text-center">
+								<a href="index" class="logo">Code<span>Guild</span></span></a>
+						</div>
+				</div>
+
+				<!-- Button mobile view to collapse sidebar menu -->
+				<div class="navbar navbar-default" role="navigation">
+						<div class="container">
+
+						</div>
+				</div>
+		</div>
+		<!-- Top Bar End -->
+		<div class="row">
+          <div class="col-sm-12">
+              <div class="card-box">
+
+                  <div class="dropdown pull-right">
+                      <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                          <i class="zmdi zmdi-more-vert"></i>
+                      </a>
+                      <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                      </ul>
+                  </div>
+
+                  <h4 class="header-title m-t-0 m-b-30">Input Types</h4>
+                  <div class="row">
+                      <div class="col-lg-6">
+                          <form class="form-horizontal" role="form" method="post" action="/users/{{userId}}/profile.nunjucks">
+                              <div class="form-group">
+                                  <label class="col-md-2 control-label" for="firstName">First Name</label>
+                                  <div class="col-md-10">
+                                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="First Name">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-md-2 control-label" for="lastName">Last Name</label>
+                                  <div class="col-md-10">
+                                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-md-2 control-label" for="email">Email</label>
+                                  <div class="col-md-10">
+                                      <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-md-2 control-label" for="links">Links</label>
+                                  <div class="col-md-10">
+                                      <input type="text" id="links" name="links" class="form-control" placeholder="separate links with comma">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-md-2 control-label" for="bio">Bio</label>
+                                  <div class="col-md-10">
+                                      <textarea class="form-control" id="bio" name="bio" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 121px;" placeholder="Tell us about yourself..."></textarea>
+                                  </div>
+                              </div>
+                      </div><!-- end col -->
+
+                      <div class="col-lg-6">
+                              <div class="form-group">
+                                  <div class="col-sm-12">
+																		<h5>Languages you want to learn</h5>
+																			<select multiple="" class="form-control">
+																					<option>Javascript</option>
+																					<option>SQL</option>
+																					<option>Java</option>
+																					<option>PHP</option>
+																					<option>Python</option>
+																					<option>Objective-C</option>
+																					<option>C</option>
+																					<option>C#</option>
+																					<option>C++</option>
+																					<option>Ruby</option>
+																					<option>Swift</option>
+																					<option>R</option>
+																					<option>Perl</option>
+																					<option>MATLAB</option>
+																					<option>Groovy</option>
+																					<option>Pascal</option>
+																					<option>Delphi</option>
+																			</select>
+                                      <h5>Languages in which you excel</h5>
+                                      <select multiple="" class="form-control">
+																				<option>Javascript</option>
+																				<option>SQL</option>
+																				<option>Java</option>
+																				<option>PHP</option>
+																				<option>Python</option>
+																				<option>Objective-C</option>
+																				<option>C</option>
+																				<option>C#</option>
+																				<option>C++</option>
+																				<option>Ruby</option>
+																				<option>Swift</option>
+																				<option>R</option>
+																				<option>Perl</option>
+																				<option>MATLAB</option>
+																				<option>Groovy</option>
+																				<option>Pascal</option>
+																				<option>Delphi</option>
+                                      </select>
+                                  </div>
+																	<div class="col-xs-6 col-xs-offset-3" id="submitButton">
+																		<button class="btn btn-custom btn-bordred btn-block waves-effect waves-light text-uppercase" type="submit">
+																			Submit
+																		</button>
+																	</div>
+																</form>
+                              </div>
+                      </div><!-- end col -->
+                  </div><!-- end row -->
+              </div>
+          </div><!-- end col -->
+      </div>
+	</body>
