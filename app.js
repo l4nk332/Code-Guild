@@ -14,6 +14,10 @@ var login = require('./routes/login')
 var about = require('./routes/about');
 var register = require('./routes/register')
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+// server.listen(nodeport...)
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

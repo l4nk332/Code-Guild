@@ -8,8 +8,9 @@ var cookieSession = require('cookie-session');
 router.get('/', function(req, res, next) {
   if (req.session.username) {
     res.redirect(`/users/${req.session.username}`);
+  } else {
+    res.render('login.nunjucks', { title: 'CodeGuild' });
   }
-  res.render('login.nunjucks', { title: 'CodeGuild' });
 });
 
 router.post('/', function (req, res, next) {
@@ -21,11 +22,11 @@ router.post('/', function (req, res, next) {
                 console.log('password matched!')
                 res.redirect(`/users/${user[0].username}`);
             } else {
-              res.render('login.nunjucks', { error: "Email/password don't match" });
+              res.render('login.nunjucks', { error: "Username/password don't match" });
               console.log('passwords do not match yo')
             }
         } else {
-          res.render('login.nunjucks', { error: "Email/password don't match" });
+          res.render('login.nunjucks', { error: "Username/password don't match" });
           console.log('username not found yo')
           }
     })
