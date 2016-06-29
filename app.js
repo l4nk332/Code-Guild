@@ -13,6 +13,7 @@ var about = require('./routes/about');
 var login = require('./routes/login')
 var about = require('./routes/about');
 var register = require('./routes/register')
+var testing = require('./routes/testing')
 var app = express();
 
 // view engine setup
@@ -43,6 +44,7 @@ app.use('/users', users);
 app.use('/login', login);
 app.use('/about', about);
 app.use('/register', register);
+app.use('/testing', testing);
 app.use('/connect', connect);
 app.get('/firepad/:id', function(req, res, next) {
 	res.render('firepad.nunjucks', {id: req.params.id});
