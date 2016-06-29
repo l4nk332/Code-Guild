@@ -15,6 +15,10 @@ var about = require('./routes/about');
 var register = require('./routes/register')
 var testing = require('./routes/testing')
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+// server.listen(nodeport...)
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,6 +52,26 @@ app.use('/testing', testing);
 app.use('/connect', connect);
 app.get('/firepad/:id', function(req, res, next) {
 	res.render('firepad.nunjucks', {id: req.params.id});
+});
+
+var loggedInUsers = {};
+
+io.on('connection', function (socket) {
+
+  socket.on("user logged in", function (username) {
+    loggedInUsers[username] = socket.id;
+
+    socket.on('request session', function(teacherName, studentName){
+      var socketId = loggedInUsers[teacherName];
+      socket.broadcast.to(socketId).emit('session query', studentName);
+    });
+
+    socket.on('disconnect', function (socket) {
+      users.splice(users.indexOf(user), 1);
+
+      io.emit('chatroom users', users);
+    });
+  })
 });
 
 // catch 404 and forward to error handler
