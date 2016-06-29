@@ -41,7 +41,7 @@
 
 <body>
 	 <header id="topnav">
-            <div class="navbar-defaultult">
+            <div class="navbar-default">
                 <div class="container">
                     <div class="topbar-left">
                         <a href="index" class="logo">
