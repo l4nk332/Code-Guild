@@ -58,8 +58,8 @@
             backgroundColor: '#fff'
         });
     },
-    
-    
+
+
     Dashboard1.prototype.init = function() {
 
         //creating bar chart
@@ -99,7 +99,7 @@
     $.Dashboard1 = new Dashboard1, $.Dashboard1.Constructor = Dashboard1
 }(window.jQuery),
 
-//initializing 
+//initializing
 function($) {
     "use strict";
     $.Dashboard1.init();

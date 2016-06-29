@@ -8,11 +8,16 @@ $( document ).ready(function() {
     $('').append(`<p>${requesterName} is requesting a session with you</p>`)
   }
 
+  socket.on()
+  $('.userStatus').click(function(e) {
+    var userStatus = e.target.val();
+    socket.emit('status change', userStatus);
+  })
 
   $('.requestSession').click(function(e) {
-    var teacher = e.target.val()
+    var teacher = e.target.val();
       socket.emit('request session', teacher, username)
-      
+
   })
 
 
