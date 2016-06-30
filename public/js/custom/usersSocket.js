@@ -24,6 +24,12 @@ $( document ).ready(function() {
     socket.emit('status change', userStatus);
   })
 
+  socket.on('status change', function(userAndStatus) {
+    var statusUser = userAndStatus.username;
+    var status = userAndStatus.status;
+    // code needed here to change status of specific user in the dom
+  })
+
   $('.requestSession').click(function() {
     var teacher = $(this).attr('id');
     console.log('var teacher is: ' + teacher);
