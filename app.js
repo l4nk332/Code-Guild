@@ -18,7 +18,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-server.listen(8080);
+server.listen(9000);
 
 
 // view engine setup
@@ -61,6 +61,8 @@ io.on('connection', function (socket) {
 
   socket.on("user logged in", function (username) {
 
+
+
     loggedInUsers[username] = socket.id;
     console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
 
@@ -75,8 +77,16 @@ io.on('connection', function (socket) {
       })
     });
 
-    socket.on('status change', function(availability){
-      socket.broadcast.emit('status change', availability);
+    socket.on('status change', function(userStatus){
+      var available;
+      if (userStatus.status === 'available') {
+        available = true;
+      } else {
+        available = false;
+      }
+
+      knex('users').where('username', userStatus.username).update('available', available);
+      socket.broadcast.emit('status change', userStatus);
     });
 
     socket.on('disconnect', function (socket) {

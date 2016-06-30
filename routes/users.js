@@ -52,4 +52,16 @@ router.get("/:username/info", function(req, res, next) {
   // Get arrays of links, interests, and excels for requested user (req.query for userId)
 });
 
+router.get('/:username/profile', function(req, res, next) {
+  if (req.session.username === req.params.username) {
+    res.render('profile.nunjucks')
+  } else {
+    res.redirect('/login');
+  }
+})
+
+router.post('/:username/profile', function(req, res, next) {
+
+})
+
 module.exports = router;
