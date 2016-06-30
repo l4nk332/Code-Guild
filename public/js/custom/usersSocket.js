@@ -5,7 +5,15 @@ $( document ).ready(function() {
   socket.emit('user logged in', username)
 
   socket.on('session query', function (requesterName) {
-    $('').append(`<p>${requesterName} is requesting a session with you</p>`)
+    $('body').append(`<div class="sessionCard">${requesterName} is requesting a session with you</div>`)
+    $('.startSession').click(function(e) {
+      // open new tab in this teacher's browser or modal with session window
+    })
+    socket.emit('session initiated', sessionURL);
+  }
+
+  socket.on('session link', function (sessionURL) {
+    // open new tab in this student's browser or modal with session window
   }
 
   socket.on()
@@ -17,7 +25,6 @@ $( document ).ready(function() {
   $('.requestSession').click(function(e) {
     var teacher = e.target.val();
       socket.emit('request session', teacher, username)
-
   })
 
 

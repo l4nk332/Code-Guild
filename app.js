@@ -62,8 +62,13 @@ io.on('connection', function (socket) {
     loggedInUsers[username] = socket.id;
 
     socket.on('request session', function(teacherName, studentName){
-      var socketId = loggedInUsers[teacherName];
-      socket.broadcast.to(socketId).emit('session query', studentName);
+      var teacherSocketId = loggedInUsers[teacherName];
+      socket.broadcast.to(teacherSocketId).emit('session query', studentName);
+
+      socket.on('session initiated', function(sessionURL) {
+        var studentSocketId =loggedInUsers[studentName];
+        socket.broadcast.to(studentSocketId).emit('session link', sessionURL);
+      })
     });
 
     socket.on('status change', function(availability){
