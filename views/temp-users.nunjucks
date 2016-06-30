@@ -106,66 +106,27 @@
       }
     </style>
 	</head>
-	<body>
+	<body data-loggedInUsername="{{ loggedInUser }}">
 		<div id="container">
+			{% for user in users %}
 			<div class="card">
 				<div class="top">
-					<button id="usernameHere">
+					<button class="requestSession" id="{{ user.username }}">
 						Connect
 					</button>
-					<span class="available/unavailable">
-						Available
+					<span class="{{ user.available }}">
 					</span>
 				</div>
 				<div class="middle">
-					<h4>bio</h4>
+					<h4>Bio</h4>
 					<p>
-						Hi there! I am a 4 year
-						programmer with tons of
-						experience in Web Development.
-						I am always available to chat
-						and would love to checkout your
-						code! Sometimes I write code
-						just to write code. I am just
-						a robot... of code. Super coder
-						powers unite! Let's just make
-						this a bit too long to show in
-						the div...yippee!
+						{{user.bio}}
 					</p>
 				</div>
 				<div class="bottom">
-					<div class="topics">
-						<table>
-							<thead>
-								<tr>
-									<th>Interests</th>
-									<th>Excels</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Javascript</td>
-									<td>C++</td>
-								</tr>
-								<tr>
-									<td>Python</td>
-									<td>C#</td>
-								</tr>
-								<tr>
-									<td>Ruby</td>
-									<td>Objective-C</td>
-								</tr>
-								<tr>
-									<td>Java</td>
-									<td>PHP</td>
-								</tr>
-
-							</tbody>
-						</table>
-					</div>
-					<div class="links"></div>
 				</div>
 			</div>
+			{% endfor %}
 		</div>
     <script>
       $(document).ready(function() {
@@ -174,5 +135,7 @@
         });
       });
     </script>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script src="/js/custom/usersSocket.js"></script>
 	</body>
 </html>
