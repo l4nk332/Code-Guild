@@ -10,14 +10,15 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var connect = require('./routes/connect');
 var about = require('./routes/about');
-var login = require('./routes/login')
+var login = require('./routes/login');
 var about = require('./routes/about');
-var register = require('./routes/register')
-var testing = require('./routes/testing')
+var register = require('./routes/register');
+var testing = require('./routes/testing');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-// server.listen(nodeport...)
+
+server.listen(8080);
 
 
 // view engine setup
@@ -59,11 +60,14 @@ var loggedInUsers = {};
 io.on('connection', function (socket) {
 
   socket.on("user logged in", function (username) {
-    loggedInUsers[username] = socket.id;
 
-    socket.on('request session', function(teacherName, studentName){
-      var teacherSocketId = loggedInUsers[teacherName];
-      socket.broadcast.to(teacherSocketId).emit('session query', studentName);
+    loggedInUsers[username] = socket.id;
+    console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
+
+    socket.on('request session', function(teacherStudent){
+      var teacherSocketId = loggedInUsers[teacherStudent.teacher];
+      console.log('teacherSocketId is: ' + teacherSocketId);
+      socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent.student);
 
       socket.on('session initiated', function(sessionURL) {
         var studentSocketId =loggedInUsers[studentName];
