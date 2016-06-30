@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
+
+// var app = express();
+// var server = require('http').Server(app);
+// var io = require('socket.io')(server);
+
 /* GET users listing. */
 router.get('/:username', function(req, res, next) {
   console.log('session cookie username: ' + req.session.username, 'path username is: ' + req.params.username)
@@ -24,7 +29,8 @@ router.get('/:username', function(req, res, next) {
               .whereIn('t.id', interests)
               .whereNot('u.username', '=', req.session.username)
               .then(function(recommendedUsers) {
-                res.json(recommendedUsers);
+                console.log('recommendedUsers is: ' + JSON.stringify(recommendedUsers));
+                res.render('temp-users.nunjucks', {users: recommendedUsers, loggedInUser: req.session.username})
               })
               .catch(function(err) {
                 console.log(`There was an error gathering recommended users for user ${req.session.username}: ${err}`);
@@ -37,8 +43,20 @@ router.get('/:username', function(req, res, next) {
         });
         // res.render('users.nunjucks', { username: req.session.username });
   } else {
-    res.redirect('/login')
+    res.redirect('/login');
   }
 });
+
+router.get('/:username/profile', function(req, res, next) {
+  if (req.session.username === req.params.username) {
+    res.render('profile.nunjucks')
+  } else {
+    res.redirect('/login');
+  }
+})
+
+router.post('/:username/profile', function(req, res, next) {
+
+})
 
 module.exports = router;

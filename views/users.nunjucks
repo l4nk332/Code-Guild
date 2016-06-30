@@ -59,7 +59,7 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">Video</h4>
-                                    <div class="text-center m-t-10">   
+                                    <div class="text-center m-t-10">
                                     <div id="videos-container"></div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">IDE</h4>
-                                    <div class="text-center m-t-10"> 
+                                    <div class="text-center m-t-10">
                                        <div id="firepad"></div>
                         			<script>
                         			  var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ id }}');
@@ -100,7 +100,7 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">Chat</h4>
-                                    <div class="text-center m-t-10">   
+                                    <div class="text-center m-t-10">
                                     </div>
                                 </div>
                             </div>
@@ -109,13 +109,13 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">FileTransfer</h4>
-                                    <div class="text-center m-t-10">   
+                                    <div class="text-center m-t-10">
                                     </div>
                                 </div>
                             </div><!-- end col -->
                         </div>
                     </div>
-               </div> 
+               </div>
         </div>
         <!-- END wrapper -->
 
@@ -148,8 +148,11 @@
 
 
         <!-- App js -->
-        <script src="js/jquery.core.js"></script>
-        <script src="js/jquery.app.js"></script>
+        <script src="/js/jquery.core.js"></script>
+        <script src="/js/jquery.app.js"></script>
+				<!-- Custom js file -->
+				<script src="/js/custom/users.js"></script>
+
 
 	</body>
 </html>

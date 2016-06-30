@@ -18,9 +18,13 @@ router.post('/', function (req, res, next) {
         if (user.length !== 0) {
             var hash = bcrypt.hashSync(req.body.password, 8);
             if (bcrypt.compareSync(req.body.password, user[0].password)) {
+
+              knex('users').where('username', req.body.username).update('available', true)
+              .then(function() {
                 req.session.username = user[0].username;
-                console.log('password matched!')
+                req.session.photo = user[0].photo;
                 res.redirect(`/users/${user[0].username}`);
+              });
             } else {
               res.render('login.nunjucks', { error: "Username/password don't match" });
               console.log('passwords do not match yo')
