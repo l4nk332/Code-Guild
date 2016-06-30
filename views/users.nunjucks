@@ -1,158 +1,124 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <title>Code Guild Card Grid</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="User landing page up successful login">
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Source+Sans+Pro|Oswald" rel="stylesheet" type="text/css">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/custom/user-landing-styles.css">
+  </head>
 
+  <body data-loggedinusername="{{ loggedInUser.username }}">
+		<!-- Navbar for page -->
+		<div id="navbar">
+			<!-- Code Guild top left logo -->
+			<h1 class="logo"><a href="/">CODE<span>GUILD</span></a></h1>
 
-		<link rel="shortcut icon" href="images/favicon.ico">
+			<!-- Drop down w/ avatar photo top right corner -->
+			<div class="dropdown">
+          {% if loggedInUser.photo %}
+   				  <img src="{{ loggedInUser.photo }}" class="avatar img-circle dropdown-toggle" data-toggle="dropdown" id="avatar-dropdown" aria-haspopup="true" aria-expanded="true" width="45">
+          {% else %}
+            <img src="https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg" class="avatar img-circle dropdown-toggle" data-toggle="dropdown" id="avatar-dropdown" aria-haspopup="true" aria-expanded="true" width="45">
+          {% endif %}
+  				<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="avatar-dropdown">
+					<li><a href="/users/{{loggedInUser.username}}/profile"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="/logout"><span class="glyphicon glyphicon-off"></span>  Logout</a></li>
+				</ul>
+			</div>
+		</div>
 
-		<title>Flacto - Responsive Admin Dashboard Template</title>
+		<!-- Start of container for cards -->
+		<div id="container">
+      {% for user in users %}
+			<!-- Single card -->
+			<div class="card" data-teacherusername="{{ user.username }}">
 
-		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="css/core.css" rel="stylesheet" type="text/css" />
-        <link href="css/components.css" rel="stylesheet" type="text/css" />
-        <link href="css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+				<!-- Top section of card -->
+				<div class="top">
+					<!-- Profile pic / username section (left)-->
+					<div class="user-info">
+            {% if user.photo %}
+						  <img class="img-circle" src="{{ user.photo }}" width="100">
+            {% else %}
+              <img class="img-circle" src="https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg" width="100">
+            {% endif %}
+						<hr>
+						<span class="username">{{ user.username }}</span>
+					</div>
+					<!-- Availibility, Connect Session links, More Info Toggle (right) -->
+					<div class="user-status">
+						<!-- This should change based on user status -->
+						<div class="status-container">
+              {% if user.available %}
+                <span class="status-text">Available</span>
+                <span class="status-available"></span>
+              {% else %}
+                <span class="status-text">Unavailable</span>
+                <span class="status-unavailable"></span>
+              {% endif %}
+						</div>
+            {% if user.available %}
+  						<div class="dropdown">
+  						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  							Connect
+  							<span class="caret"></span>
+  						  </button>
+  						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <!-- Triggers socket event -->
+    							<li><a class="session-request">Learn</a></li>
+    							<li role="separator" class="divider"></li>
+                  <!-- Triggers socket event -->
+    							<li><a class="session-request">Review</a></li>
+  						  </ul>
+  						</div>
+            {% endif %}
+						<!-- Drop down menu -->
+						<button class="info btn btn-primary" role="button" data-teacheruserid="{{ user.id }}">
+							<span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
 
-        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+				<!-- Middle section of card -->
+				<div class="middle">
+					<!-- Personal user bio -->
+					<p>{{ user.bio }}</p>
+				</div>
 
-        <script src="js/modernizr.min.js"></script>
-
-	</head>
-
-	<body class="fixed-left">
-
-		<!-- Begin page -->
-		<div id="wrapper">
-
-            <!-- Top Bar Start -->
-            <div class="navbar-default">
-                    <div class="text-center">
-                        <a href="index" class="logo">
-                            <i class="zmdi zmdi-toys icon-c-logo"></i><span>Code<span>Guild</span></span>
-                        </a>
-                    </div>
-                </div>
-
-			<!-- ============================================================== -->
-			<!-- Start right Content here -->
-			<!-- ============================================================== -->
-			<div class="content-page">
-				<!-- Start content -->
-				<div class="content">
-					<div class="container">
-
-						<!-- Page-Title -->
-
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                    </div>
-                                    <h4 class="header-title m-t-0">Video</h4>
-                                    <div class="text-center m-t-10">
-                                    <div id="videos-container"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                    </div>
-                                    <h4 class="header-title m-t-0">IDE</h4>
-                                    <div class="text-center m-t-10">
-                                       <div id="firepad"></div>
-                        			<script>
-                        			  var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ id }}');
-                        			  var codeMirror = CodeMirror(document.getElementById('firepad'), {
-                        					lineWrapping: false,
-                        					mode: "javascript",
-                        					theme: 'midnight',
-                        					smartIndent: true,
-                        					lineNumbers: true,
-                        					fixedGutter: false,
-                        					autofocus: true
-                        				});
-                        			  var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-                        			      { richTextShortcuts: false, richTextToolbar: false, defaultText: '// Code here...' });
-                        			</script>
-                        			<style>
-                        			.firepad {
-                        			  width: 80%;
-                        			  height: 450px;
-                        			  margin: auto;
-                        			          }
-                        		    </style>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                    </div>
-                                    <h4 class="header-title m-t-0">Chat</h4>
-                                    <div class="text-center m-t-10">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                    </div>
-                                    <h4 class="header-title m-t-0">FileTransfer</h4>
-                                    <div class="text-center m-t-10">
-                                    </div>
-                                </div>
-                            </div><!-- end col -->
-                        </div>
-                    </div>
-               </div>
-        </div>
-        <!-- END wrapper -->
-
-        <script>
-            var resizefunc = [];
-        </script>
-
-        <!-- jQuery  -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/detect.js"></script>
-        <script src="js/fastclick.js"></script>
-        <script src="js/jquery.slimscroll.js"></script>
-        <script src="js/jquery.blockUI.js"></script>
-        <script src="js/waves.js"></script>
-        <script src="js/wow.min.js"></script>
-        <script src="js/jquery.nicescroll.js"></script>
-        <script src="js/jquery.scrollTo.min.js"></script>
-
-        <!--Morris Chart-->
-		<script src="plugins/morris/morris.min.js"></script>
-		<script src="plugins/raphael/raphael-min.js"></script>
-
-        <!-- Counter Up  -->
-        <script src="plugins/waypoints/lib/jquery.waypoints.js"></script>
-        <script src="plugins/counterup/jquery.counterup.min.js"></script>
-
-        <!-- Dashboard init -->
-        <script src="pages/jquery.dashboard.js"></script>
-
-
-        <!-- App js -->
-        <script src="/js/jquery.core.js"></script>
-        <script src="/js/jquery.app.js"></script>
-				<!-- Custom js file -->
-				<script src="/js/custom/users.js"></script>
-
-
-	</body>
+				<!-- Bottom section of card -->
+				<div class="bottom">
+					<!-- Table of topics user is interested in / excels at (left)-->
+					<div class="topics">
+						<table>
+							<thead>
+								<tr>
+									<th>Interests</th>
+								</tr>
+							</thead>
+							<tbody class="interests"></tbody>
+						</table>
+            <table>
+							<thead>
+								<tr>
+									<th>Excels</th>
+								</tr>
+							</thead>
+							<tbody class="excels"></tbody>
+						</table>
+					</div>
+					<!-- List of links / glyphicons to a users personal pages (right) -->
+					<div class="links"></div>
+				</div>
+			</div>
+      {% endfor %}
+		<!-- End of container for cards -->
+		</div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/js/custom/user-landing-script.js"></script>
+    <script src="/js/custom/usersSocket.js"></script>
+  </body>
 </html>
