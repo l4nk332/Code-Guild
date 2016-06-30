@@ -30,7 +30,8 @@ router.get('/:username', function(req, res, next) {
               .whereNot('u.username', '=', req.session.username)
               .then(function(recommendedUsers) {
                 console.log('recommendedUsers is: ' + JSON.stringify(recommendedUsers));
-                res.render('temp-users.nunjucks', {users: recommendedUsers, loggedInUser: req.session.username})
+                //res.json(recommendedUsers);
+                res.render('users.nunjucks', {users: recommendedUsers, loggedInUser: {username: req.session.username, photo: null}});
               })
               .catch(function(err) {
                 console.log(`There was an error gathering recommended users for user ${req.session.username}: ${err}`);
@@ -45,6 +46,10 @@ router.get('/:username', function(req, res, next) {
   } else {
     res.redirect('/login');
   }
+});
+
+router.get("/:username/info", function(req, res, next) {
+  // Get arrays of links, interests, and excels for requested user (req.query for userId)
 });
 
 router.get('/:username/profile', function(req, res, next) {
