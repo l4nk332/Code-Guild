@@ -102,13 +102,13 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">Video</h4>
-                                    <div class="text-center m-t-10"> 
+                                    <div class="text-center m-t-10">
                                     <div class="make-center">
                                     <input type="text" id="room-id" value="abcdef" placeholder="Enter Room Name">
                                     <button id="open-room">Open Room</button>
                                     <button id="join-room">Join Room</button>
                                     <button id="btn-leave-room" disabled>Leave /or close the room</button>
-                    
+
                                     <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
                                     </div>
                                     <div id="videos-container"></div>
@@ -120,7 +120,7 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">IDE</h4>
-                                    <div class="text-center m-t-10"> 
+                                    <div class="text-center m-t-10">
                                        <div id="firepad"></div>
                                     <script>
                                       var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ id }}');
@@ -152,8 +152,8 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">Chat</h4>
-                                    <div class="text-center m-t-10"> 
-                                    <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled> 
+                                    <div class="text-center m-t-10">
+                                    <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
                                     <div class="chat-output"></div>
                                     </div>
                                 </div>
@@ -163,14 +163,14 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">FileTransfer</h4>
-                                    <div class="text-center m-t-10">   
+                                    <div class="text-center m-t-10">
                                     <button id="share-file" disabled>Share File</button>
                                     </div>
                                 </div>
                             </div><!-- end col -->
                         </div>
                     </div>
-               </div> 
+               </div>
         </div>
 
         <!-- <script src="/dist/rmc3.min.js"></script> -->
@@ -178,7 +178,7 @@
 
         <!-- custom layout for HTML5 audio/video elements -->
         <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
-        
+
         <!-- <script src="/dev/FileBufferReader.js"></script> -->
         <script src="/js/rmc3.fbr.min.js"></script>
 
@@ -407,7 +407,7 @@
             document.getElementById('room-id').onkeyup = function() {
                 localStorage.setItem(connection.socketMessageEvent, this.value);
             };
-            
+
             var hashString = location.hash.replace('#', '');
 
             var roomid = params.roomid;

@@ -47,4 +47,16 @@ router.get('/:username', function(req, res, next) {
   }
 });
 
+router.get('/:username/profile', function(req, res, next) {
+  if (req.session.username === req.params.username) {
+    res.render('profile.nunjucks')
+  } else {
+    res.redirect('/login');
+  }
+})
+
+router.post('/:username/profile', function(req, res, next) {
+
+})
+
 module.exports = router;
