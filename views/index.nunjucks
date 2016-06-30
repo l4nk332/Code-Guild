@@ -20,7 +20,7 @@
             <div class="navbar-default">
                 <div class="container">
                     <div class="topbar-left">
-                        <a href="index" class="logo">
+                        <a href="/" class="logo">
                             <span>Code<span>Guild</span></span>
                         </a>
                     </div>
@@ -32,7 +32,7 @@
 					<div class="container">
 						<!-- Page-Title -->
                         <div class="row">
-                            
+                        <div id="bg-image"></div>
                         </div>
                      </div>
                 </div> <!-- container -->
