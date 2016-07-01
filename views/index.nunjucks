@@ -15,29 +15,54 @@
 
 </head>
     <body>
-		<div id="wrapper">
-    <header id="topnav">
-            <div class="navbar-default">
-                <div class="container">
-                    <div class="topbar-left">
-                        <a href="index" class="logo">
-                            <span>Code<span>Guild</span></span>
-                        </a>
-                    </div>
-                </div>
-            </div>    
-    </header> 
+	<div id="wrapper">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header"> <a href="/" class="logo">Code Guild</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav"><a href="/login">Login</a>
+            </li>
+            <li class="nav"><a href="/register">Register</a>
+            </li>
+        </ul>
+          
+    </div>
 <!-- Start content -->
                 <div class="content">
 					<div class="container">
 						<!-- Page-Title -->
                         <div class="row">
-                            
+                        <video width="622" height="200" style="width:100%;height:100%" class="media-player" poster="http://il6.picdn.net/shutterstock/videos/4507691/thumb/1.jpg" autoplay="" loop="" src="http://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.mp4">
+                <source type="video/mp4" src="http://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.mp4">
+                <source type="video/webm" src="http://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.webm">
+                <object width="596" height="200" type="application/x-shockwave-flash" data="/video/assets/static/flashmediaelement.swf">
+                    <param name="movie" value="/video/assets/static/flashmediaelement.swf">
+                    <param name="flashvars" value="controls=true&amp;file=http%3A%2F%2Fak1.picdn.net%2Fshutterstock%2Fvideos%2F4507691%2Fpreview%2Fstock-footage-education-and-school-students-in-computer-class.mp4">
+                </object>
+            </video>
                         </div>
                      </div>
                 </div> <!-- container -->
-
-
+	<div class="container">
+                        <div class="row">
+                        <div class="col-lg-4" style="text-align: center; padding-top: 30px">
+                        <img src="/images/teacher3.png">
+                        <h2>Instructors that care</h2>
+                        <p>With the passionate fires of computer science and programming burning within each of our instructors, 
+                        we have found a perfect balance of dictatorialship and mothering to soothe your nerves.</p>
+                        </div>
+                        <div class="col-lg-4" style="text-align: center; padding-top: 30px">
+                        <img src="/images/dblcheck.png">
+                        <h2>Code Review Ecosystem</h2>
+                        Our platform features many ways to connect with system coders and hackers to help review and solve some of your coding issues. If you can't find it here, 
+                        </div>
+                        <div class="col-lg-4" style="text-align: center; padding-top: 30px">
+                        <img src="/images/video.png">
+                        <h3>MultiMedia Capabilities</h2>
+                        <p>We have included Audio, Video, Chat, and File sharing features with every paired user session. Enjoy low latency connections and ease of access</p>
+                        </div>
+                        </div>
+</div>
                 <footer class="footer">
                     2016 © Code Guild. 
                 </footer>
