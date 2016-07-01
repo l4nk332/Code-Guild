@@ -4,27 +4,37 @@ $( document ).ready(function() {
 
   socket.emit('user logged in', username);
 
+// click listener to emit session request
+  $('.session-request').click(function() {
+    var teacher = $(this).closest('.card').attr('data-teacherusername');
+    var sessionType = $(this).text();
+    var studentPhoto = $('#avatar-dropdown').attr('src');
+
+      socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
+  })
+
+// socket listener to receive session request in modal
   socket.on('session query', function (modalInfo) {
     var sessionUsersString = username + '#' + modalInfo.student;
-    var sessionURL = 'connect/' + sessionUsersString
-
+    var sessionURL = '/connect/' + sessionUsersString
+    var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: }
     // put received student info into modal
     $('#studentPhoto').attr('src', modalInfo.studentPhoto);
     $('#requesting-user').text(modalInfo.student);
     $('#session-type').text(modalInfo.sessionType);
     $('#yes').parent('a').attr('href', sessionURL);
     // show modal
-    $("#overlay").removeClass("hide");
+    $("#receiveOverlay").removeClass("hide");
     $("body").css({overflow: "hidden"});
 
     $('#yes').click(function() {
       // open new page in this teacher's browser
-      socket.emit('session initiated', 'localhost:3000/connect/' + sessionUsersString);
+      socket.emit('session initiated', sessionURL);
     })
 
     $('#no').click(function() {
       // socket.emit('session declined')
-      $("#overlay").addClass("hide");
+      $("#receiveOverlay").addClass("hide");
       $("body").css({overflow: "visible"});
     })
 
@@ -33,6 +43,25 @@ $( document ).ready(function() {
   socket.on('session link', function (sessionURL) {
     // open new page in this student's browser
     console.log(sessionURL);
+
+    $('#studentPhoto2').attr('src', modalInfo.studentPhoto);
+    $('#requesting-user2').text(modalInfo.student);
+    $('#session-type2').text(modalInfo.sessionType);
+    $('#yes2').parent('a').attr('href', sessionURL);
+    // show modal
+    $("#receiveOverlay").removeClass("hide");
+    $("body").css({overflow: "hidden"});
+
+    $('#yes2').click(function() {
+      // open new page in this teacher's browser
+      socket.emit('session initiated', 'localhost:3000/connect/' + sessionUsersString);
+    })
+
+    $('#no2').click(function() {
+      // socket.emit('session declined')
+      $("#receiveOverlay").addClass("hide");
+      $("body").css({overflow: "visible"});
+    })
   })
 
   socket.on('status change', function(userStatusChange) {
@@ -60,13 +89,7 @@ $( document ).ready(function() {
   //   code needed here to change status of specific user in the dom
   // })
 
-  $('.session-request').click(function() {
-    var teacher = $(this).closest('.card').attr('data-teacherusername');
-    var sessionType = $(this).text();
-    var studentPhoto = $('#avatar-dropdown').attr('src');
 
-      socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
-  })
 
 
 

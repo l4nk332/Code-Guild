@@ -118,7 +118,7 @@
                                     <div class="text-center m-t-10">
                                        <div id="firepad"></div>
                                     <script>
-                                      var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ id }}');
+                                      var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ uniqueRoomName }}');
                                       var codeMirror = CodeMirror(document.getElementById('firepad'), {
                                             lineWrapping: false,
                                             mode: "javascript",
@@ -272,15 +272,15 @@
             // ......................................................
             window.onload = function() {
                 console.log("OASDPASODPAOSDPOASPDOAPSODPASODPASODPAOSDPASODPAOSDPOASPDOAPSODPASODPASODPASODPASODPASODPASd");
-              
+
                 connection.open('{{uniqueRoomName}}', function() {
                   (connection.sessionid);
                   console.log('connection sessionid is: ' + connection.sessionid)
                 });
 
               //
-            
-           
+
+
             // ......................................................
             // ................FileSharing/TextChat Code.............
             // ......................................................
@@ -330,7 +330,7 @@
             } else {
                 roomid = connection.token();
             }
-            
+
             var hashString = location.hash.replace('#', '');
 
             var roomid = params.roomid;
