@@ -9,7 +9,7 @@ $( document ).ready(function() {
     $('body').append(`${requesterName.teacher}${requesterName.student}${requesterName.studentPhoto}${requesterName.sessionType} is requesting a session with you</div>`)
     $('.startSession').click(function(e) {
       // open new page in this teacher's browser
-      var sessionUsersString = username + '/' + requesterName;
+      var sessionUsersString = username + '#' + requesterName;
     })
     socket.emit('session initiated', sessionURL);
   })

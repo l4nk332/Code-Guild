@@ -48,6 +48,7 @@ app.use(cookieSession({
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
+app.use('/logout', logout);
 app.use('/about', about);
 app.use('/register', register);
 app.use('/testing', testing);
@@ -68,7 +69,7 @@ io.on('connection', function (socket) {
     console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
 
     socket.on('request session', function(teacherStudent){
-      console.log('teacherStudent is: ' + JSON.stringify(teacherStudent))
+      console.log('teacherStudent is: ' + JSON.stringify(teacherStudent));
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
       console.log('teacherSocketId is: ' + teacherSocketId);
       socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent.student);
@@ -76,13 +77,13 @@ io.on('connection', function (socket) {
       socket.on('session initiated', function(sessionURL) {
         var studentSocketId =loggedInUsers[studentName];
         socket.broadcast.to(studentSocketId).emit('session link', sessionURL);
-      })
+      });
     });
 
     socket.on('status change', function(userStatus){
       socket.broadcast.emit('status change', userStatus);
 
-      var userStatusChange = {username: username, status: available}
+      var userStatusChange = {username: username, status: available};
       var available;
 
       if (userStatus.status === 'available') {
