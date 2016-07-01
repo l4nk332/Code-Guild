@@ -5,7 +5,6 @@ var knex = require('../db/knex');
 // var app = express();
 // var server = require('http').Server(app);
 // var io = require('socket.io')(server);
-
 /* GET users listing. */
 router.get('/:username', function(req, res, next) {
   if (req.session.username === req.params.username) {
@@ -21,7 +20,7 @@ router.get('/:username', function(req, res, next) {
           });
           // Select recommended users with titles and ids of what they excel at (matching to an array of ids)
             knex('u').distinct('u.username')
-              .select('u.id', 'u.first_name', 'u.last_name', 'u.auth_acct', 'u.bio', 'u.available')
+              .select('u.id', 'u.first_name', 'u.last_name', 'u.auth_acct', 'u.bio', 'u.available', 'u.photo')
               .from('users as u')
               .join('interests_excels as i_e', 'i_e.user_id', '=', 'u.id')
               .join('topics as t', 't.id', '=', 'i_e.topic_id')
@@ -29,7 +28,7 @@ router.get('/:username', function(req, res, next) {
               .whereNot('u.username', '=', req.session.username)
               .then(function(recommendedUsers) {
                 //res.json(recommendedUsers);
-                res.render('users.nunjucks', {users: recommendedUsers, loggedInUser: {username: req.session.username, photo: null}});
+                res.render('users.nunjucks', {users: recommendedUsers, loggedInUser: {username: req.session.username, photo: req.session.photo}});
               })
               .catch(function(err) {
                 console.log(`There was an error gathering recommended users for user ${req.session.username}: ${err}`);
@@ -46,20 +45,106 @@ router.get('/:username', function(req, res, next) {
   }
 });
 
-router.get("/:username/info", function(req, res, next) {
-  // Get arrays of links, interests, and excels for requested user (req.query for userId)
+router.get("/info", function(req, res, next) {
+  // var userId = req.query.userId;
+  // knex.select("topics.name").from("topics")
+  // .join("interests_excels", "interests_excels.topic_id", "=", "topics.id")
+  // .where({"interests_excels.user_id": userId})
+  // .then(function(listOfIE) {
+  //   var interests = [];
+  //   var excels = [];
+  //   listOfIE.forEach((topic))
+  //});
 });
 
 router.get('/:username/profile', function(req, res, next) {
   if (req.session.username === req.params.username) {
-    res.render('profile.nunjucks')
+    res.render('profile.nunjucks', {username: req.params.username});
   } else {
     res.redirect('/login');
   }
-})
+});
 
 router.post('/:username/profile', function(req, res, next) {
-
-})
+  if (req.session.username === req.params.username) {
+    // Insert into the users table
+    knex("users").where({username: req.params.username})
+    .update({
+      "first_name": req.body.firstName,
+      "last_name": req.body.lastName,
+      "email": req.body.email,
+      "photo": req.body.photo,
+      "bio": req.body.bio
+    }).returning("*")
+    .then(function(users) {
+      // Set avatar photo on session
+      req.session.photo = users[0].photo;
+      // Set user id for later use (in join table inserts bellow)
+      var userId = users[0].id;
+      // Getting the topic id of all users interests
+      knex.select("title", "id").from("topics").whereIn("title", req.body.interests)
+        .then(function(topics) {
+          var userInterestIds = [];
+          topics.forEach((obj) => {
+            userInterestIds.push(obj.id);
+          });
+          var userInterestInsert = [];
+          userInterestIds.map((interestId) => {
+              userInterestInsert.push({
+                "topic_id": interestId,
+                "user_id": userId,
+                "user_relationship": "interest"
+              });
+          });
+          console.log(`\n\nUser interest ids are: ${JSON.stringify(userInterestIds)}\n\n`);
+          console.log(`\n\nUser interest insert objects are: ${userInterestInsert}\n\n`);
+          // Use topic ids to insert data into the interests_excels table (interests)
+          knex("interests_excels").where({"user_id": users[0].id})
+          .insert(userInterestInsert)
+          .then(function() {
+            // Getting the topic id of all users excels
+            knex.select("title", "id").from("topics").whereIn("title", req.body.excels)
+              .then(function(topics) {
+                var userExcelIds = [];
+                topics.forEach((obj) => {
+                  userExcelIds.push(obj.id);
+                });
+                var userExcelInsert = [];
+                userExcelIds.map((excelId) => {
+                    userExcelInsert.push({
+                      "topic_id": excelId,
+                      "user_id": userId,
+                      "user_relationship": "excel"
+                    });
+                });
+                console.log(`\n\nUser excel ids are: ${JSON.stringify(topics)}\n\n`);
+                console.log(`\n\nUser excel insert objects are: ${userExcelInsert}\n\n`);
+                // Use topic ids to insert data into the interests_excels table (excels)
+                knex("interests_excels").where({"user_id": users[0].id})
+                .insert(userExcelInsert)
+                .then(function() {
+                  var links = (req.body.links).split(/\s*,\s*/g);
+                  var userLinkInsert = [];
+                  links.map((link) => {
+                    userLinkInsert.push({
+                      "user_id": userId,
+                      "source": link
+                    });
+                  });
+                  // Insert data into the links table
+                  knex("links").insert(userLinkInsert)
+                  .then(function() {
+                    console.log("Made it through!");
+                    res.redirect(`/users/${req.session.username}`);
+                  });
+                });
+            });
+          });
+        });
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
 
 module.exports = router;

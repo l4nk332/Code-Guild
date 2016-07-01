@@ -57,46 +57,50 @@
                           <i class="zmdi zmdi-more-vert"></i>
                       </a>
                       <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
+                          <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+													<li class="divider"></li>
+                          <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>  Logout</a></li>
                       </ul>
                   </div>
 
-                  <h4 class="header-title m-t-0 m-b-30">Input Types</h4>
+                  <h4 class="header-title m-t-0 m-b-30">User Profile Setup</h4>
                   <div class="row">
                       <div class="col-lg-6">
-                          <form class="form-horizontal" role="form" method="post" action="/users/{{userId}}/profile.nunjucks">
+                          <form class="form-horizontal" role="form" method="post" action="/users/{{username}}/profile">
                               <div class="form-group">
                                   <label class="col-md-2 control-label" for="firstName">First Name</label>
                                   <div class="col-md-10">
-                                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="First Name">
+                                      <input name="firstName" id="firstName" type="text" class="form-control" placeholder="First Name" required>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <label class="col-md-2 control-label" for="lastName">Last Name</label>
                                   <div class="col-md-10">
-                                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name">
+                                      <input name="lastName" id="lastName" type="text" class="form-control" placeholder="Last Name" required>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <label class="col-md-2 control-label" for="email">Email</label>
                                   <div class="col-md-10">
-                                      <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+                                      <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                                  </div>
+                              </div>
+															<div class="form-group">
+                                  <label class="col-md-2 control-label" for="photo">Image</label>
+                                  <div class="col-md-10">
+                                      <input type="text" id="photo" name="photo" class="form-control" placeholder="Image Url" required>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <label class="col-md-2 control-label" for="links">Links</label>
                                   <div class="col-md-10">
-                                      <input type="text" id="links" name="links" class="form-control" placeholder="separate links with comma">
+                                      <input type="text" id="links" name="links" class="form-control" placeholder="separate links with comma" required>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <label class="col-md-2 control-label" for="bio">Bio</label>
                                   <div class="col-md-10">
-                                      <textarea class="form-control" id="bio" name="bio" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 121px;" placeholder="Tell us about yourself..."></textarea>
+                                      <textarea class="form-control" id="bio" name="bio" rows="5" style="margin-top: 0px; margin-bottom: 0px; height: 121px;" placeholder="Tell us about yourself..." required></textarea>
                                   </div>
                               </div>
                       </div><!-- end col -->
@@ -105,49 +109,49 @@
                               <div class="form-group">
                                   <div class="col-sm-12">
 																		<h5>Languages you want to learn</h5>
-																			<select multiple="" class="form-control">
-																					<option>Javascript</option>
-																					<option>SQL</option>
-																					<option>Java</option>
-																					<option>PHP</option>
-																					<option>Python</option>
-																					<option>Objective-C</option>
-																					<option>C</option>
-																					<option>C#</option>
-																					<option>C++</option>
-																					<option>Ruby</option>
-																					<option>Swift</option>
-																					<option>R</option>
-																					<option>Perl</option>
-																					<option>MATLAB</option>
-																					<option>Groovy</option>
-																					<option>Pascal</option>
-																					<option>Delphi</option>
+																			<select name="interests" multiple="multiple" class="form-control" required>
+																					<option value="Javascript">Javascript</option>
+																					<option value="SQL">SQL</option>
+																					<option value="Java">Java</option>
+																					<option value="PHP">PHP</option>
+																					<option value="Python">Python</option>
+																					<option value="Objective-C">Objective-C</option>
+																					<option value="C">C</option>
+																					<option value="C#">C#</option>
+																					<option value="C++">C++</option>
+																					<option value="Ruby">Ruby</option>
+																					<option value="Swift">Swift</option>
+																					<option value="R">R</option>
+																					<option value="Perl">Perl</option>
+																					<option value="MATLAB">MATLAB</option>
+																					<option value="Groovy">Groovy</option>
+																					<option value="Pascal">Pascal</option>
+																					<option value="Delphi">Delphi</option>
 																			</select>
                                       <h5>Languages in which you excel</h5>
-                                      <select multiple="" class="form-control">
-																				<option>Javascript</option>
-																				<option>SQL</option>
-																				<option>Java</option>
-																				<option>PHP</option>
-																				<option>Python</option>
-																				<option>Objective-C</option>
-																				<option>C</option>
-																				<option>C#</option>
-																				<option>C++</option>
-																				<option>Ruby</option>
-																				<option>Swift</option>
-																				<option>R</option>
-																				<option>Perl</option>
-																				<option>MATLAB</option>
-																				<option>Groovy</option>
-																				<option>Pascal</option>
-																				<option>Delphi</option>
+                                      <select name="excels" multiple="multiple" class="form-control" required>
+																				<option value="Javascript">Javascript</option>
+																				<option value="SQL">SQL</option>
+																				<option value="Java">Java</option>
+																				<option value="PHP">PHP</option>
+																				<option value="Python">Python</option>
+																				<option value="Objective-C">Objective-C</option>
+																				<option value="C">C</option>
+																				<option value="C#">C#</option>
+																				<option value="C++">C++</option>
+																				<option value="Ruby">Ruby</option>
+																				<option value="Swift">Swift</option>
+																				<option value="R">R</option>
+																				<option value="Perl">Perl</option>
+																				<option value="MATLAB">MATLAB</option>
+																				<option value="Groovy">Groovy</option>
+																				<option value="Pascal">Pascal</option>
+																				<option value="Delphi">Delphi</option>
                                       </select>
                                   </div>
 																	<div class="col-xs-6 col-xs-offset-3" id="submitButton">
 																		<button class="btn btn-custom btn-bordred btn-block waves-effect waves-light text-uppercase" type="submit">
-																			Submit
+																			Save
 																		</button>
 																	</div>
 																</form>
