@@ -58,10 +58,19 @@ router.get('/:username/profile', function(req, res, next) {
   } else {
     res.redirect('/login');
   }
-})
+});
 
 router.post('/:username/profile', function(req, res, next) {
-
+  if (req.session.username === req.params.username) {
+    // Finish inserting data here...
+    knex("users").where({username: req.params.username})
+    .insert({}, "users.photo")
+    .then(function(user) {
+      // handle changing photo in req.session...
+    });
+  } else {
+    res.redirect("/404");
+  }
 })
 
 module.exports = router;

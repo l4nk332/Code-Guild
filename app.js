@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var connect = require('./routes/connect');
 var about = require('./routes/about');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var about = require('./routes/about');
 var register = require('./routes/register');
 var testing = require('./routes/testing');
