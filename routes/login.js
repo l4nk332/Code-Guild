@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(req.session.username);
   if (req.session.username) {
     res.redirect(`/users/${req.session.username}`);
   } else {

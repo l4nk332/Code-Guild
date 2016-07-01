@@ -64,19 +64,15 @@ io.on('connection', function (socket) {
 
   socket.on("user logged in", function (username) {
 
-
-
     loggedInUsers[username] = socket.id;
-    console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
 
     socket.on('request session', function(teacherStudent){
       console.log('teacherStudent is: ' + JSON.stringify(teacherStudent));
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
-      console.log('teacherSocketId is: ' + teacherSocketId);
-      socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent.student);
+      socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent);
 
       socket.on('session initiated', function(sessionURL) {
-        var studentSocketId =loggedInUsers[studentName];
+        var studentSocketId = loggedInUsers[studentName];
         socket.broadcast.to(studentSocketId).emit('session link', sessionURL);
       });
     });
@@ -99,14 +95,10 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function (socket) {
       delete loggedInUsers[username];
       knex('users').where('username', username).update('available', false);
-      socket.broadcast.emit('status change', username);
+      // socket.broadcast.emit('status change', username);
     });
   })
 });
-
-// Build unique session URL code
-'https://codeguild.dyndns.org/'
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -31,57 +31,54 @@
 		</div>
 
 
-    <!-- Modal section start -->
+		<!-- Modal section start -->
 
     <div id="overlay" class="hide">
-    	<div id="modal">
-    		<div class="modal-top">
-    			<div class="modal-image">
-    				<img src="http://www.nbc.com/the-tonight-show/content/sites/nbcutsjf/files/styles/bit_stacked_resized/public/images/2015/04/22/jesse-eisenberg.jpg?itok=bWADmZM8" class="img-circle" width="80">
-    			</div>
-    			<div class="modal-message">
-    				<p><span id="requesting-user">John</span> is requesting a <span id="session-type">review</span> session...</p>
-    			</div>
-    		</div>
-    		<hr>
-    		<div class="modal-middle">
-    			<div class="btn-group btn-group-justified button-request-group" role="group" aria-label="...">
-    				<div class="btn-group" role="group">
-    					<button type="button" class="btn btn-default" id="yes"><span class="glyphicon glyphicon-ok"></span></button>
-    				</div>
-    				<div class="btn-group" role="group">
-    					<button type="button" class="btn btn-default" id="no"><span class="glyphicon glyphicon-remove"></span></button>
-    				</div>
-    			</div>
-    		</div>
-    		<div class="modal-bottom">
-    			<div class="message-input">
-    				<div class="message-container">
-    					<ul class="message-box clearfix">
-    						<li class="pull-left"><span id="sender">John</span> Hey, how's it going?</li>
-    						<li class="pull-right">What do you want? <span id="reciever"></span></li>
-    						<li><span id="sender">John</span> Just checkin' in...</li>
-    						<li><span id="sender">John</span> Can I borrow 5 dollars?</li>
-    						<li>Again?! <span id="reciever"></span></li>
-    						<li>What the heck man! <span id="reciever"></span></li>
-    					</ul>
-    				</div>
-    			</div>
-    		</div>
-    		<div class="input-group">
-    			<input type="text" class="form-control" placeholder="Message...">
-    			<span class="input-group-btn">
-    				<button class="btn btn-default" type="button">
-    					<span class="glyphicon glyphicon-send"></span>
-    				</button>
-    			</span>
-    		</div>
-    	</div>
+      <div id="modal">
+        <div class="modal-top">
+          <div class="modal-image">
+            <img id="studentPhoto" src="" class="img-circle" width="80">
+          </div>
+          <div class="modal-message">
+            <p><span id="requesting-user"></span> is requesting a <span id="session-type"></span> session...</p>
+          </div>
+        </div>
+        <hr>
+        <div class="modal-middle">
+          <div class="btn-group btn-group-justified button-request-group" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <a href=""><button type="button" class="btn btn-default" id="yes"><span class="glyphicon glyphicon-ok"></span></button></a>
+            </div>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" id="no"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-bottom">
+          <div class="message-input">
+            <div class="message-container">
+              <ul class="message-box clearfix">
+                <li class="pull-left"><span id="sender">John</span> Hey, hows it going?</li>
+                <li class="pull-right">What do you want? <span id="receiver"></span></li>
+                <li><span id="sender">John</span> Just checkin in...</li>
+                <li><span id="sender">John</span> Can I borrow 5 dollars?</li>
+                <li>Again?! <span id="receiver"></span></li>
+                <li>What the heck man! <span id="receiver"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Message...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-send"></span>
+            </button>
+          </span>
+        </div>
+      </div>
     </div>
     <!-- Modal section end -->
-
-
-
 
 		<!-- Start of container for cards -->
 		<div id="container">
