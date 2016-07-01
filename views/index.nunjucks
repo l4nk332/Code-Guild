@@ -32,12 +32,12 @@
 					<div class="container">
 						<!-- Page-Title -->
                         <div class="row">
-                        <video width="622" height="200" style="width:100%;height:100%" class="media-player" poster="http://il6.picdn.net/shutterstock/videos/4507691/thumb/1.jpg" autoplay="" loop="" src="http://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.mp4">
-                <source type="video/mp4" src="http://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.mp4">
-                <source type="video/webm" src="http://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.webm">
+                        <video width="622" height="200" style="width:100%;height:100%" class="media-player" poster="https://il6.picdn.net/shutterstock/videos/4507691/thumb/1.jpg" autoplay="" loop="" src="https://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.mp4">
+                <source type="video/mp4" src="https://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.mp4">
+                <source type="video/webm" src="https://ak1.picdn.net/shutterstock/videos/4507691/preview/stock-footage-education-and-school-students-in-computer-class.webm">
                 <object width="596" height="200" type="application/x-shockwave-flash" data="/video/assets/static/flashmediaelement.swf">
                     <param name="movie" value="/video/assets/static/flashmediaelement.swf">
-                    <param name="flashvars" value="controls=true&amp;file=http%3A%2F%2Fak1.picdn.net%2Fshutterstock%2Fvideos%2F4507691%2Fpreview%2Fstock-footage-education-and-school-students-in-computer-class.mp4">
+                    <param name="flashvars" value="controls=true&amp;file=https%3A%2F%2Fak1.picdn.net%2Fshutterstock%2Fvideos%2F4507691%2Fpreview%2Fstock-footage-education-and-school-students-in-computer-class.mp4">
                 </object>
             </video>
                         </div>
