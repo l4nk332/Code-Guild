@@ -17,49 +17,49 @@ $( document ).ready(function() {
   socket.on('session query', function (modalInfo) {
     var sessionUsersString = username + '#' + modalInfo.student;
     var sessionURL = '/connect/' + sessionUsersString
-    var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: }
+    var teacherPhoto = $('#avatar-dropdown').attr('src')
+    var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: teacherPhoto, teacherName: username}
     // put received student info into modal
     $('#studentPhoto').attr('src', modalInfo.studentPhoto);
     $('#requesting-user').text(modalInfo.student);
     $('#session-type').text(modalInfo.sessionType);
     $('#yes').parent('a').attr('href', sessionURL);
     // show modal
-    $("#receiveOverlay").removeClass("hide");
+    $("#overlay").removeClass("hide");
     $("body").css({overflow: "hidden"});
 
     $('#yes').click(function() {
       // open new page in this teacher's browser
-      socket.emit('session initiated', sessionURL);
+      console.log(sessionLinkObj);
+      socket.emit('session initiated', sessionLinkObj);
     })
 
     $('#no').click(function() {
       // socket.emit('session declined')
-      $("#receiveOverlay").addClass("hide");
+      $("#overlay").addClass("hide");
       $("body").css({overflow: "visible"});
     })
 
   })
 
-  socket.on('session link', function (sessionURL) {
-    // open new page in this student's browser
-    console.log(sessionURL);
+  socket.on('session link', function (sessionLinkObj) {
+    // launch second modal
+    console.log(sessionLinkObj);
 
-    $('#studentPhoto2').attr('src', modalInfo.studentPhoto);
-    $('#requesting-user2').text(modalInfo.student);
-    $('#session-type2').text(modalInfo.sessionType);
-    $('#yes2').parent('a').attr('href', sessionURL);
+    $('#teacherPhoto').attr('src', sessionLinkObj.teacherPhoto);
+    $('#responding-user').text(sessionLinkObj.teacherName);
+    $('#yes2').parent('a').attr('href', sessionLinkObj.sessionURL);
     // show modal
-    $("#receiveOverlay").removeClass("hide");
+    $("#overlay2").removeClass("hide");
     $("body").css({overflow: "hidden"});
 
     $('#yes2').click(function() {
-      // open new page in this teacher's browser
-      socket.emit('session initiated', 'localhost:3000/connect/' + sessionUsersString);
+
     })
 
     $('#no2').click(function() {
       // socket.emit('session declined')
-      $("#receiveOverlay").addClass("hide");
+      $("#overlay2").addClass("hide");
       $("body").css({overflow: "visible"});
     })
   })

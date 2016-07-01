@@ -30,7 +30,6 @@
 			</div>
 		</div>
 
-
 	<!-- Modal section start -->
 
 		<!--Receiving request Modal  -->
@@ -89,17 +88,17 @@
       <div id="Modal2">
         <div class="modal-top">
           <div class="modal-image">
-            <img id="studentPhoto2" src="" class="img-circle" width="80">
+            <img id="teacherPhoto" src="" class="img-circle" width="80">
           </div>
           <div class="modal-message">
-            <p>Your request for a <span id="session-type2"></span> session with <span id="requesting-user2"></span> was sent</p>
+            <p>Your request for a <span id="session-type2"></span> session with <span id="responding-user"></span> was accepted. Enter session?</p>
           </div>
         </div>
         <hr>
         <div class="modal-middle">
           <div class="btn-group btn-group-justified button-request-group" role="group" aria-label="...">
             <div class="btn-group" role="group">
-              <a href=""><button type="button" class="btn btn-default" id="yes2"><span class="glyphicon glyphicon-ok"></span></button></a>
+              <a href="" target="_blank"><button type="button" class="btn btn-default" id="yes2"><span class="glyphicon glyphicon-ok"></span></button></a>
             </div>
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-default" id="no2"><span class="glyphicon glyphicon-remove"></span></button>

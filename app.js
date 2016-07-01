@@ -72,9 +72,10 @@ io.on('connection', function (socket) {
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
       socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent);
 
-      socket.on('session initiated', function(sessionURL) {
+      socket.on('session initiated', function(sessionLinkObj) {
+        console.log('sessionLinkObj is: ' + JSON.stringify(sessionLinkObj));
         var studentSocketId = loggedInUsers[studentName];
-        socket.broadcast.to(studentSocketId).emit('session link', sessionURL);
+        socket.broadcast.to(studentSocketId).emit('session link', sessionLinkObj);
       })
     });
 
