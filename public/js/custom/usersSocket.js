@@ -1,6 +1,6 @@
 $( document ).ready(function() {
   var username = $('body').attr('data-loggedInUsername');
-  var socket = io.connect('https://codeguild.dyndns.org:9000');
+  var socket = io.connect('https://codeguild.dyndns.org');
 
   socket.emit('user logged in', username);
 
@@ -30,8 +30,8 @@ $( document ).ready(function() {
 
     $('#yes').click(function() {
       // open new page in this teacher's browser
-      console.log(sessionLinkObj);
-      socket.emit('session initiated', sessionLinkObj);
+      socket.emit('session initiated', 'codeguild.dyndns.org/connect/' + sessionUsersString);
+
     })
 
     $('#no').click(function() {
