@@ -228,10 +228,10 @@ body, html {
 	-webkit-animation-name: online;
 	        animation-name: online;
 	-webkit-animation-duration: 0.9s;
-	        animation-duration: 0.9s; 
-	-webkit-animation-timing-function: ease-out; 
-	        animation-timing-function: ease-out; 
-	-webkit-animation-delay: 0; 
+	        animation-duration: 0.9s;
+	-webkit-animation-timing-function: ease-out;
+	        animation-timing-function: ease-out;
+	-webkit-animation-delay: 0;
 	        animation-delay: 0;
 	-webkit-animation-direction: alternate;
 	        animation-direction: alternate;
@@ -248,10 +248,10 @@ body, html {
 	-webkit-animation-name: in-session;
 	        animation-name: in-session;
 	-webkit-animation-duration: 0.9s;
-	        animation-duration: 0.9s; 
-	-webkit-animation-timing-function: ease-out; 
-	        animation-timing-function: ease-out; 
-	-webkit-animation-delay: 0; 
+	        animation-duration: 0.9s;
+	-webkit-animation-timing-function: ease-out;
+	        animation-timing-function: ease-out;
+	-webkit-animation-delay: 0;
 	        animation-delay: 0;
 	-webkit-animation-direction: alternate;
 	        animation-direction: alternate;
@@ -450,3 +450,206 @@ body, html {
     background-color: #ecf0f1;
   }
 }
+
+
+/* Modal style start here */
+
+#overlay {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	padding: 0;
+	margin: 0;
+	background-color: rgba(10, 10, 10, 0.7);
+	z-index: 10;
+}
+
+#modal {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column wrap;
+	    -ms-flex-flow: column wrap;
+	        flex-flow: column wrap;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	position: absolute;
+	z-index: 11;
+	width: 450px;
+  	height: 450px;
+	border-radius: 10px;
+  	padding: 10px 20px;
+  	top: 50%;
+  	left: 50%;
+ 	margin: -225px 0 0 -225px;
+	background-color: #3498db;
+	-webkit-animation-name: drop-in;
+	        animation-name: drop-in;
+	-webkit-animation-duration: 1s;
+	        animation-duration: 1s;
+	-webkit-animation-timing-function: ease-out;
+	        animation-timing-function: ease-out;
+	-webkit-animation-delay: 0;
+	        animation-delay: 0;
+	-webkit-animation-direction: normal;
+	        animation-direction: normal;
+	-webkit-animation-iteration-count: 1;
+	        animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+	-webkit-animation-play-state: running;
+	        animation-play-state: running;
+}
+
+.modal-top {
+	width: 100%;
+	height: 100px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row no-wrap;
+	    -ms-flex-flow: row no-wrap;
+	        flex-flow: row no-wrap;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+
+.modal-image {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row no-wrap;
+	    -ms-flex-flow: row no-wrap;
+	        flex-flow: row no-wrap;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	width: 30%;
+	height: 100px;
+	margin: auto;
+}
+
+.modal-image img {
+	margin: auto;
+}
+
+.modal-message {
+	width: 70%;
+	height: 100px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row no-wrap;
+	    -ms-flex-flow: row no-wrap;
+	        flex-flow: row no-wrap;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+
+.modal-message p {
+	margin: auto;
+	font-size: 1.1em;
+
+}
+
+#modal hr {
+	width: 50%;
+	margin: 5px auto;
+	border: 1px solid black;
+}
+
+.modal-middle {
+	width: 100%;
+	height: 50px;
+}
+
+.button-request-group btn{
+	height: 50px;
+}
+
+#yes {
+	background-color: #27ae60;
+	border: none;
+	height: 50px;
+}
+
+#no {
+	background-color: #c0392b;
+	border: none;
+	height: 50px;
+}
+
+.modal-bottom {
+	width: 100%;
+	height: 200px;
+}
+
+.message-box {
+	padding: 0;
+	list-style: none;
+}
+
+.message-box li:nth-child(even) {
+	width: 80%;
+}
+
+.message-box li:nth-child(odd) {
+	width: 80%;
+}
+
+.hide {
+	display: none;
+}
+
+@-webkit-keyframes drop-in {
+	0% {
+		top: -50%;
+		opacity: 0;
+	}
+
+	100% {
+		top: 50%;
+		opacity: 1;
+	}
+}
+
+@keyframes drop-in {
+	0% {
+		top: -50%;
+		opacity: 0;
+	}
+
+	100% {
+		top: 50%;
+		opacity: 1;
+	}
+}
+
+/* Modal Styles end here */

@@ -1,5 +1,20 @@
+function modalAdd() {
+	$("#overlay").removeClass("hide");
+}
+
+function modalRemove() {
+	$("#overlay").addClass("hide");
+}
+
+modalAdd();
+
 $(".info").on("click", function() {
 	console.log("Additional Information is unfinished...");
+
+	//modalAdd();
+	//modalRemove();
+
+
 	/*
 	var prevRequested = $(this).data("previously-requested");
 	if (prevRequested !== "true") {
