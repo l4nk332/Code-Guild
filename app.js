@@ -65,39 +65,47 @@ io.on('connection', function (socket) {
   socket.on("user logged in", function (username) {
 
     loggedInUsers[username] = socket.id;
+    knex('users').where('username', username).update('available', true);
+    var userStatus = {username: username, status: "available"}
+    socket.broadcast.emit('status change', userStatus);
 
     socket.on('request session', function(teacherStudent){
       console.log('teacherStudent is: ' + JSON.stringify(teacherStudent));
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
       socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent);
 
-      socket.on('session initiated', function(sessionURL) {
+      socket.on('session initiated', function(sessionLinkObj) {
+        console.log('sessionLinkObj is: ' + JSON.stringify(sessionLinkObj));
         var studentSocketId = loggedInUsers[studentName];
-        socket.broadcast.to(studentSocketId).emit('session link', sessionURL);
-      });
+        socket.broadcast.to(studentSocketId).emit('session link', sessionLinkObj);
+      })
     });
 
-    socket.on('status change', function(userStatus){
-      socket.broadcast.emit('status change', userStatus);
-
-      var userStatusChange = {username: username, status: available};
-      var available;
-
-      if (userStatus.status === 'available') {
-        available = true;
-      } else {
-        available = false;
-      }
-
-      knex('users').where('username', userStatus.username).update('available', available);
-    });
-
-    socket.on('disconnect', function (socket) {
+    socket.on('disconnect', function () {
       delete loggedInUsers[username];
       knex('users').where('username', username).update('available', false);
-      // socket.broadcast.emit('status change', username);
+      userStatus = {username: username, status: "unavailable"};
+      console.log('userStatus is: ' + userStatus);
+      socket.broadcast.emit('status change', userStatus);
     });
+
+    // socket.on('status change', function(userStatus){
+    //   socket.broadcast.emit('status change', userStatus);
+    //
+    //   var userStatusChange = {username: username, status: available}
+    //   var available;
+    //
+    //   if (userStatus.status === 'available') {
+    //     available = true;
+    //   } else {
+    //     available = false;
+    //   }
+    //
+    //   knex('users').where('username', userStatus.username).update('available', available);
+    // });
+
   })
+
 });
 
 // catch 404 and forward to error handler

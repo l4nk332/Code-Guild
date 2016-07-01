@@ -4,10 +4,21 @@ $( document ).ready(function() {
 
   socket.emit('user logged in', username);
 
+// click listener to emit session request
+  $('.session-request').click(function() {
+    var teacher = $(this).closest('.card').attr('data-teacherusername');
+    var sessionType = $(this).text();
+    var studentPhoto = $('#avatar-dropdown').attr('src');
+
+      socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
+  })
+
+// socket listener to receive session request in modal
   socket.on('session query', function (modalInfo) {
     var sessionUsersString = username + '#' + modalInfo.student;
-    var sessionURL = 'connect/' + sessionUsersString
-
+    var sessionURL = '/connect/' + sessionUsersString
+    var teacherPhoto = $('#avatar-dropdown').attr('src')
+    var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: teacherPhoto, teacherName: username}
     // put received student info into modal
     $('#studentPhoto').attr('src', modalInfo.studentPhoto);
     $('#requesting-user').text(modalInfo.student);
@@ -20,6 +31,7 @@ $( document ).ready(function() {
     $('#yes').click(function() {
       // open new page in this teacher's browser
       socket.emit('session initiated', 'codeguild.dyndns.org/connect/' + sessionUsersString);
+
     })
 
     $('#no').click(function() {
@@ -30,29 +42,46 @@ $( document ).ready(function() {
 
   })
 
-  socket.on('session link', function (sessionURL) {
-    // open new page in this student's browser
-    console.log(sessionURL);
+  socket.on('session link', function (sessionLinkObj) {
+    // launch second modal
+    console.log(sessionLinkObj);
+
+    $('#teacherPhoto').attr('src', sessionLinkObj.teacherPhoto);
+    $('#responding-user').text(sessionLinkObj.teacherName);
+    $('#yes2').parent('a').attr('href', sessionLinkObj.sessionURL);
+    // show modal
+    $("#overlay2").removeClass("hide");
+    $("body").css({overflow: "hidden"});
+
+    $('#yes2').click(function() {
+
+    })
+
+    $('#no2').click(function() {
+      // socket.emit('session declined')
+      $("#overlay2").addClass("hide");
+      $("body").css({overflow: "visible"});
+    })
   })
 
   socket.on('status change', function(userStatusChange) {
     var statusChangeUser = userStatusChange.username;
     var userStatus = userStatusChange.status;
-    var cardToChange = $('.card').attr('data-teacherusername').val(loggedOutUser).closest('.status-container');
+    var cardToChange = $('.card').attr('data-teacherusername', statusChangeUser).closest('.status-container');
 
-    if (user.available) {
-      $(cardToChange).html("<span class='status-text'>Available</span><span class='status-available'></span>")
+    if (userStatus === "available") {
+      $(cardToChange).html("<span class='status-text'>Available</span><span class='status-available'></span>");
     }
-    else {}
-      // <span class="status-text">Unavailable</span>
-      // <span class="status-unavailable"></span>
+    else {
+      $(cardToChange).html("<span class='status-text'>Unavailable</span><span class='status-unavailable'></span>");
+    }
   })
 
-
-  $('.userStatus').click(function(e) {
-    var userStatus = {username: username, status: e.target.val()};
-    socket.emit('status change', userStatus);
-  })
+// socket emmission when user changes status manually
+  // $('.userStatus').click(function(e) {
+  //   var userStatus = {username: username, status: e.target.val()};
+  //   socket.emit('status change', userStatus);
+  // })
 
   // socket.on('status change', function(userAndStatus) {
   //   var statusUser = userAndStatus.username;
@@ -60,13 +89,7 @@ $( document ).ready(function() {
   //   code needed here to change status of specific user in the dom
   // })
 
-  $('.session-request').click(function() {
-    var teacher = $(this).closest('.card').attr('data-teacherusername');
-    var sessionType = $(this).text();
-    var studentPhoto = $('#avatar-dropdown').attr('src');
 
-      socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
-  })
 
 
 
