@@ -28,12 +28,12 @@ router.post('/', function (req, res, next) {
               });
             } else {
               res.render('login.nunjucks', { error: "Username/password don't match" });
-              console.log('passwords do not match yo')
+              console.log('passwords do not match yo');
             }
         } else {
           res.render('login.nunjucks', { error: "Username/password don't match" });
-          console.log('username not found yo')
+          console.log('username not found yo');
           }
-    })
+    });
 });
 module.exports = router;
