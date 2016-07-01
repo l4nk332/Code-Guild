@@ -7,34 +7,28 @@
     <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Source+Sans+Pro|Oswald" rel="stylesheet" type="text/css">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/custom/user-landing-styles.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/menu.css" rel="stylesheet" type="text/css" />
+    <link href="/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
   </head>
-  
+
   <body data-loggedinusername="{{ loggedInUser.username }}">
-	
-		<!-- Navbar for page -->
-		<div id="navbar">
-			<!-- Code Guild top left logo -->
-			<h1 class="logo"><a href="/">CODE<span>GUILD</span></a></h1>
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header"> <a href="/" class="logo">Code Guild</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+            <li><a href="/users/{{loggedInUser.username}}/profile"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+                </ul>
 
-			<!-- Drop down w/ avatar photo top right corner -->
-			<div class="dropdown">
-          {% if loggedInUser.photo %}
-   				  <img src="{{ loggedInUser.photo }}" class="avatar img-circle dropdown-toggle" data-toggle="dropdown" id="avatar-dropdown" aria-haspopup="true" aria-expanded="true" width="45">
-          {% else %}
-            <img src="https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg" class="avatar img-circle dropdown-toggle" data-toggle="dropdown" id="avatar-dropdown" aria-haspopup="true" aria-expanded="true" width="45">
-          {% endif %}
-  				<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="avatar-dropdown">
-					<li><a href="/users/{{loggedInUser.username}}/profile"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
-					<li role="separator" class="divider"></li>
-					<li><a href="/logout"><span class="glyphicon glyphicon-off"></span>  Logout</a></li>
-				</ul>
-			</div>
-		</div>
 
-	<!-- Modal section start -->
+        </ul>
+    </div>
 
-		<!--Receiving request Modal  -->
-
+    <!-- Modal section start -->
     <div id="overlay" class="hide">
       <div id="modal">
         <div class="modal-top">
@@ -135,28 +129,28 @@
 <!-- Modal section end -->
 
 
-		<!-- Start of container for cards -->
-		<div id="container">
+        <!-- Start of container for cards -->
+        <div id="container">
       {% for user in users %}
-			<!-- Single card -->
-			<div class="card" data-teacherusername="{{ user.username }}">
+            <!-- Single card -->
+            <div class="card" data-teacherusername="{{ user.username }}">
 
-				<!-- Top section of card -->
-				<div class="top">
-					<!-- Profile pic / username section (left)-->
-					<div class="user-info">
+                <!-- Top section of card -->
+                <div class="top">
+                    <!-- Profile pic / username section (left)-->
+                    <div class="user-info">
             {% if user.photo %}
-						  <img class="img-circle" src="{{ user.photo }}" width="100">
+                          <img class="img-circle" src="{{ user.photo }}" width="100">
             {% else %}
               <img class="img-circle" src="https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg" width="100">
             {% endif %}
-						<hr>
-						<span class="username">{{ user.username }}</span>
-					</div>
-					<!-- Availibility, Connect Session links, More Info Toggle (right) -->
-					<div class="user-status">
-						<!-- This should change based on user status -->
-						<div class="status-container">
+                        <hr>
+                        <span class="username">{{ user.username }}</span>
+                    </div>
+                    <!-- Availibility, Connect Session links, More Info Toggle (right) -->
+                    <div class="user-status">
+                        <!-- This should change based on user status -->
+                        <div class="status-container">
               {% if user.available %}
                 <span class="status-text">Available</span>
                 <span class="status-available"></span>
@@ -164,67 +158,77 @@
                 <span class="status-text">Unavailable</span>
                 <span class="status-unavailable"></span>
               {% endif %}
-						</div>
+                        </div>
             {% if user.available %}
-  						<div class="dropdown">
-  						  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-  							Connect
-  							<span class="caret"></span>
-  						  </button>
-  						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <div class="dropdown">
+                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Connect
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <!-- Triggers socket event -->
-    							<li><a class="session-request">Learn</a></li>
-    							<li role="separator" class="divider"></li>
+                                <li><a class="session-request">Learn</a></li>
+                                <li role="separator" class="divider"></li>
                   <!-- Triggers socket event -->
-    							<li><a class="session-request">Review</a></li>
-  						  </ul>
-  						</div>
+                                <li><a class="session-request">Review</a></li>
+                          </ul>
+                        </div>
             {% endif %}
-						<!-- Drop down menu -->
-						<button class="info btn btn-primary" role="button" data-teacheruserid="{{ user.id }}">
-							<span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-						</button>
-					</div>
-				</div>
+                        <!-- Drop down menu -->
+                        <button class="info btn btn-primary" role="button" data-teacheruserid="{{ user.id }}">
+                            <span class="glyphicon glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
 
-				<!-- Middle section of card -->
-				<div class="middle">
-					<!-- Personal user bio -->
-					<p>{{ user.bio }}</p>
-				</div>
+                <!-- Middle section of card -->
+                <div class="middle">
+                    <!-- Personal user bio -->
+                    <p>{{ user.bio }}</p>
+                </div>
 
-				<!-- Bottom section of card -->
-				<div class="bottom">
-					<!-- Table of topics user is interested in / excels at (left)-->
-					<div class="topics">
-						<table>
-							<thead>
-								<tr>
-									<th>Interests</th>
-								</tr>
-							</thead>
-							<tbody class="interests"></tbody>
-						</table>
+                <!-- Bottom section of card -->
+                <div class="bottom">
+                    <!-- Table of topics user is interested in / excels at (left)-->
+                    <div class="topics">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Interests</th>
+                                </tr>
+                            </thead>
+                            <tbody class="interests"></tbody>
+                        </table>
             <table>
-							<thead>
-								<tr>
-									<th>Excels</th>
-								</tr>
-							</thead>
-							<tbody class="excels"></tbody>
-						</table>
-					</div>
-					<!-- List of links / glyphicons to a users personal pages (right) -->
-					<div class="links"></div>
-				</div>
-			</div>
+                            <thead>
+                                <tr>
+                                    <th>Excels</th>
+                                </tr>
+                            </thead>
+                            <tbody class="excels"></tbody>
+                        </table>
+                    </div>
+                    <!-- List of links / glyphicons to a users personal pages (right) -->
+                    <div class="links"></div>
+                </div>
+            </div>
       {% endfor %}
-		<!-- End of container for cards -->
-		</div>
+        <!-- End of container for cards -->
+        </div>
+             <!-- jQuery  -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/detect.js"></script>
+        <script src="/js/fastclick.js"></script>
+        <script src="/js/jquery.slimscroll.js"></script>
+        <script src="/js/jquery.blockUI.js"></script>
+        <script src="/js/wow.min.js"></script>
+        <script src="/js/jquery.nicescroll.js"></script>
+        <script src="/js/jquery.scrollTo.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-		<script src="/js/custom/user-landing-script.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script src="/js/custom/user-landing-script.js"></script>
     <script src="/js/custom/usersSocket.js"></script>
   </body>
 </html>

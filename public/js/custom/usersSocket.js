@@ -1,6 +1,6 @@
 $( document ).ready(function() {
   var username = $('body').attr('data-loggedInUsername');
-  var socket = io.connect('http://localhost:9000');
+  var socket = io.connect('https://codeguild.dyndns.org:9000');
 
   socket.emit('user logged in', username);
 

@@ -30,23 +30,21 @@
 		</style>
 	</head>
 	<body>
-		<!-- Top Bar Start -->
-		<div class="topbar">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header"> <a href="/" class="logo">Code Guild</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+            <li><a href="/users/{{loggedInUser.username}}/profile"><span class="glyphicon glyphicon-user"></span>Dashboard</a></li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+                </ul>
+            
+    
+        </ul>
+          
+    </div>
 
-				<!-- LOGO -->
-				<div class="topbar-left">
-						<div class="text-center">
-								<a href="index" class="logo">Code<span>Guild</span></span></a>
-						</div>
-				</div>
 
-				<!-- Button mobile view to collapse sidebar menu -->
-				<div class="navbar navbar-default" role="navigation">
-						<div class="container">
 
-						</div>
-				</div>
-		</div>
 		<!-- Top Bar End -->
 		<div class="row">
           <div class="col-sm-12">
