@@ -38,21 +38,21 @@ $( document ).ready(function() {
   socket.on('status change', function(userStatusChange) {
     var statusChangeUser = userStatusChange.username;
     var userStatus = userStatusChange.status;
-    var cardToChange = $('.card').attr('data-teacherusername').val(loggedOutUser).closest('.status-container');
+    var cardToChange = $('.card').attr('data-teacherusername', statusChangeUser).closest('.status-container');
 
-    if (user.available) {
-      $(cardToChange).html("<span class='status-text'>Available</span><span class='status-available'></span>")
+    if (userStatus === "available") {
+      $(cardToChange).html("<span class='status-text'>Available</span><span class='status-available'></span>");
     }
-    else {}
-      // <span class="status-text">Unavailable</span>
-      // <span class="status-unavailable"></span>
+    else {
+      $(cardToChange).html("<span class='status-text'>Unavailable</span><span class='status-unavailable'></span>");
+    }
   })
 
-
-  $('.userStatus').click(function(e) {
-    var userStatus = {username: username, status: e.target.val()};
-    socket.emit('status change', userStatus);
-  })
+// socket emmission when user changes status manually
+  // $('.userStatus').click(function(e) {
+  //   var userStatus = {username: username, status: e.target.val()};
+  //   socket.emit('status change', userStatus);
+  // })
 
   // socket.on('status change', function(userAndStatus) {
   //   var statusUser = userAndStatus.username;
