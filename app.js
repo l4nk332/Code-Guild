@@ -14,6 +14,7 @@ var login = require('./routes/login');
 var about = require('./routes/about');
 var register = require('./routes/register');
 var testing = require('./routes/testing');
+var knex = require('./db/knex');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -67,6 +68,7 @@ io.on('connection', function (socket) {
     console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
 
     socket.on('request session', function(teacherStudent){
+      console.log('teacherStudent is: ' + JSON.stringify(teacherStudent))
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
       console.log('teacherSocketId is: ' + teacherSocketId);
       socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent.student);
@@ -78,7 +80,11 @@ io.on('connection', function (socket) {
     });
 
     socket.on('status change', function(userStatus){
+      socket.broadcast.emit('status change', userStatus);
+
+      var userStatusChange = {username: username, status: available}
       var available;
+
       if (userStatus.status === 'available') {
         available = true;
       } else {
@@ -86,16 +92,19 @@ io.on('connection', function (socket) {
       }
 
       knex('users').where('username', userStatus.username).update('available', available);
-      socket.broadcast.emit('status change', userStatus);
     });
 
     socket.on('disconnect', function (socket) {
       delete loggedInUsers[username];
-
-      io.emit('logged out', username);
+      knex('users').where('username', username).update('available', false);
+      socket.broadcast.emit('status change', username);
     });
   })
 });
+
+// Build unique session URL code
+'https://codeguild.dyndns.org/'
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

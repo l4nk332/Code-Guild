@@ -192,7 +192,7 @@
             document.getElementById('open-room').onclick = function() {
                 disableInputButtons();
                 connection.open(document.getElementById('room-id').value, function() {
-                    showRoomURL(connection.sessionid);
+                  (connection.sessionid);
                 });
             };
 
@@ -368,7 +368,7 @@
             // ......................Handling Room-ID................
             // ......................................................
 
-            function showRoomURL(roomid) {
+            function(roomid) {
                 var roomHashURL = '#' + roomid;
                 var roomQueryStringURL = '?roomid=' + roomid;
 
