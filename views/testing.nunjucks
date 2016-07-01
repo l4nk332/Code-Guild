@@ -189,10 +189,11 @@
             // .......................UI Code........................
             // ......................................................
 
-            document.getElementById('open-room').onclick = function() {
+            window.onload = function() {
                 disableInputButtons();
-                connection.open(document.getElementById('room-id').value, function() {
+                connection.open({{uniqueRoomName}}, function() {
                   (connection.sessionid);
+                  console.log('connection sessionid is: ' + connection.sessionid)
                 });
             };
 

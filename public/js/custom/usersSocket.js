@@ -4,18 +4,34 @@ $( document ).ready(function() {
 
   socket.emit('user logged in', username);
 
-  socket.on('session query', function (requesterName) {
+  socket.on('session query', function (modalInfo) {
+    var sessionUsersString = username + '#' + modalInfo.student;
+    console.log(modalInfo);
+    // put received student info into modal
+    $('#studentPhoto').attr('src', modalInfo.studentPhoto);
+    $('#requesting-user').text(modalInfo.student);
+    $('#session-type').text(modalInfo.sessionType);
+    $('#yes').closest('href', 'connect/' + sessionUsersString);
+    // show modal
+    $("#overlay").removeClass("hide");
+    $("body").css({overflow: "hidden"});
 
-    $('body').append(`${requesterName.teacher}${requesterName.student}${requesterName.studentPhoto}${requesterName.sessionType} is requesting a session with you</div>`)
-    $('.startSession').click(function(e) {
+    $('#yes').click(function() {
       // open new page in this teacher's browser
-      var sessionUsersString = username + '/' + requesterName;
+      socket.emit('session initiated', 'localhost:3000/connect/' + sessionUsersString);
     })
-    socket.emit('session initiated', sessionURL);
+
+    $('#no').click(function() {
+      // socket.emit('session declined')
+      $("#overlay").addClass("hide");
+      $("body").css({overflow: "visible"});
+    })
+
   })
 
   socket.on('session link', function (sessionURL) {
     // open new page in this student's browser
+    console.log(sessionURL);
   })
 
   socket.on('status change', function(userStatusChange) {

@@ -8,7 +8,6 @@ var knex = require('../db/knex');
 
 /* GET users listing. */
 router.get('/:username', function(req, res, next) {
-  console.log('session cookie username: ' + req.session.username, 'path username is: ' + req.params.username)
   if (req.session.username === req.params.username) {
     // Select all interests from a specific user (given username)
     knex.select('t.id')
@@ -29,7 +28,6 @@ router.get('/:username', function(req, res, next) {
               .whereIn('t.id', interests)
               .whereNot('u.username', '=', req.session.username)
               .then(function(recommendedUsers) {
-                console.log('recommendedUsers is: ' + JSON.stringify(recommendedUsers));
                 //res.json(recommendedUsers);
                 res.render('users.nunjucks', {users: recommendedUsers, loggedInUser: {username: req.session.username, photo: null}});
               })
