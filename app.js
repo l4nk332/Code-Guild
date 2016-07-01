@@ -70,13 +70,13 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('status change', userStatus);
 
     socket.on('request session', function(teacherStudent){
-      console.log('teacherStudent is: ' + JSON.stringify(teacherStudent));
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
       socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent);
 
       socket.on('session initiated', function(sessionLinkObj) {
         console.log('sessionLinkObj is: ' + JSON.stringify(sessionLinkObj));
-        var studentSocketId = loggedInUsers[studentName];
+        var studentSocketId = loggedInUsers[teacherStudent.student];
+        console.log(studentSocketId);
         socket.broadcast.to(studentSocketId).emit('session link', sessionLinkObj);
       })
     });

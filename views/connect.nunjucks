@@ -89,7 +89,7 @@
             <li class="nav"><a href="/logout">Logout</a>
             </li>
         </ul>
-          
+
     </div>
 
             <!-- ============================================================== -->
@@ -134,7 +134,7 @@
                                         });
                                       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
                                           { richTextShortcuts: false, richTextToolbar: false, defaultText: '// Code here...' });
-                                    
+
                                     </script>
                                     <style>
                                     .firepad {
@@ -324,7 +324,7 @@
             } else {
                 roomid = connection.token();
             }
-            
+
             var hashString = location.hash.replace('#', '');
 
             var roomid = params.roomid;
