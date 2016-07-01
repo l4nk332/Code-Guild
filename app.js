@@ -11,6 +11,7 @@ var users = require('./routes/users');
 var connect = require('./routes/connect');
 var about = require('./routes/about');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var about = require('./routes/about');
 var register = require('./routes/register');
 var testing = require('./routes/testing');
@@ -48,6 +49,7 @@ app.use(cookieSession({
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
+app.use('/logout', logout);
 app.use('/about', about);
 app.use('/register', register);
 app.use('/testing', testing);
@@ -68,7 +70,7 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('status change', userStatus);
 
     socket.on('request session', function(teacherStudent){
-      console.log('teacherStudent is: ' + teacherStudent);
+      console.log('teacherStudent is: ' + JSON.stringify(teacherStudent));
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
       socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent);
 
