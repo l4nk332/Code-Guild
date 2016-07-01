@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-  var username = $('body').attr('data-loggedInUsername');
+  var username = $('body').attr('data-loggedinusername');
   var socket = io.connect('https://codeguild.dyndns.org');
 
   socket.emit('user logged in', username);
@@ -8,7 +8,7 @@ $( document ).ready(function() {
   $('.session-request').click(function() {
     var teacher = $(this).closest('.card').attr('data-teacherusername');
     var sessionType = $(this).text();
-    var studentPhoto = $('#avatar-dropdown').attr('src');
+    var studentPhoto = $('body').attr('data-loggedinuserphoto');
 
       socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
   })
@@ -17,9 +17,11 @@ $( document ).ready(function() {
   socket.on('session query', function (modalInfo) {
     var sessionUsersString = username + '#' + modalInfo.student;
     var sessionURL = '/connect/' + sessionUsersString
-    var teacherPhoto = $('#avatar-dropdown').attr('src')
+    var teacherPhoto = $('body').attr('data-loggedinuserphoto');
     var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: teacherPhoto, teacherName: username}
     // put received student info into modal
+    console.log(JSON.stringify(sessionLinkObj));
+
     $('#studentPhoto').attr('src', modalInfo.studentPhoto);
     $('#requesting-user').text(modalInfo.student);
     $('#session-type').text(modalInfo.sessionType);
@@ -30,8 +32,7 @@ $( document ).ready(function() {
 
     $('#yes').click(function() {
       // open new page in this teacher's browser
-      socket.emit('session initiated', 'codeguild.dyndns.org/connect/' + sessionUsersString);
-
+      socket.emit('session initiated', sessionLinkObj);
     })
 
     $('#no').click(function() {
@@ -44,9 +45,9 @@ $( document ).ready(function() {
 
   socket.on('session link', function (sessionLinkObj) {
     // launch second modal
-    console.log(sessionLinkObj);
+    console.log("final step hit! sessionLinkObj is: " + JSON.stringify(sessionLinkObj));
 
-    $('#teacherPhoto').attr('src', sessionLinkObj.teacherPhoto);
+    // $('#teacherPhoto').attr('src', sessionLinkObj.teacherPhoto);
     $('#responding-user').text(sessionLinkObj.teacherName);
     $('#yes2').parent('a').attr('href', sessionLinkObj.sessionURL);
     // show modal

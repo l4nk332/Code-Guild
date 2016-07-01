@@ -15,7 +15,7 @@
     <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body data-loggedinusername="{{ loggedInUser.username }}">
+  <body data-loggedinusername="{{ loggedInUser.username }}" data-loggedinuserphoto="{{ loggedInUser.photo }}">
     <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header"> <a href="/" class="logo">Code Guild</a>
         </div>
@@ -79,8 +79,8 @@
 
 		<!-- request sent modal begin  -->
 
-		<div id="Overlay2" class="hide">
-      <div id="Modal2">
+		<div id="overlay2" class="hide">
+      <div id="modal2">
         <div class="modal-top">
           <div class="modal-image">
             <img id="teacherPhoto" src="" class="img-circle" width="80">
@@ -161,17 +161,29 @@
                         </div>
             {% if user.available %}
                         <div class="dropdown">
-                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Connect
-                            <span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+													<ul>
                   <!-- Triggers socket event -->
                                 <li><a class="session-request">Learn</a></li>
                                 <li role="separator" class="divider"></li>
                   <!-- Triggers socket event -->
                                 <li><a class="session-request">Review</a></li>
                           </ul>
+
+
+													<!--
+                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Connect
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+                                <li><a class="session-request">Learn</a></li>
+                                <li role="separator" class="divider"></li>
+
+                                <li><a class="session-request">Review</a></li>
+                          </ul>
+												-->
                         </div>
             {% endif %}
                         <!-- Drop down menu -->
