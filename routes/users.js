@@ -96,48 +96,48 @@ router.post('/:username/profile', function(req, res, next) {
                 "user_relationship": "interest"
               });
           });
-          console.log(`\n\nUser interest ids are: ${JSON.stringify(userInterestIds)}\n\n`);
-          console.log(`\n\nUser interest insert objects are: ${userInterestInsert}\n\n`);
-          // Use topic ids to insert data into the interests_excels table (interests)
-          knex("interests_excels").where({"user_id": users[0].id})
-          .insert(userInterestInsert)
+          // Clear out previous interests and excels
+          knex("interests_excels").where({"user_id": users[0].id}).del()
           .then(function() {
-            // Getting the topic id of all users excels
-            knex.select("title", "id").from("topics").whereIn("title", req.body.excels)
-              .then(function(topics) {
-                var userExcelIds = [];
-                topics.forEach((obj) => {
-                  userExcelIds.push(obj.id);
-                });
-                var userExcelInsert = [];
-                userExcelIds.map((excelId) => {
-                    userExcelInsert.push({
-                      "topic_id": excelId,
-                      "user_id": userId,
-                      "user_relationship": "excel"
-                    });
-                });
-                console.log(`\n\nUser excel ids are: ${JSON.stringify(topics)}\n\n`);
-                console.log(`\n\nUser excel insert objects are: ${userExcelInsert}\n\n`);
-                // Use topic ids to insert data into the interests_excels table (excels)
-                knex("interests_excels").where({"user_id": users[0].id})
-                .insert(userExcelInsert)
-                .then(function() {
-                  var links = (req.body.links).split(/\s*,\s*/g);
-                  var userLinkInsert = [];
-                  links.map((link) => {
-                    userLinkInsert.push({
-                      "user_id": userId,
-                      "source": link
-                    });
+            // Use topic ids to insert data into the interests_excels table (interests)
+            knex("interests_excels").where({"user_id": users[0].id})
+            .insert(userInterestInsert)
+            .then(function() {
+              // Getting the topic id of all users excels
+              knex.select("title", "id").from("topics").whereIn("title", req.body.excels)
+                .then(function(topics) {
+                  var userExcelIds = [];
+                  topics.forEach((obj) => {
+                    userExcelIds.push(obj.id);
                   });
-                  // Insert data into the links table
-                  knex("links").insert(userLinkInsert)
+                  var userExcelInsert = [];
+                  userExcelIds.map((excelId) => {
+                      userExcelInsert.push({
+                        "topic_id": excelId,
+                        "user_id": userId,
+                        "user_relationship": "excel"
+                      });
+                  });
+                  // Use topic ids to insert data into the interests_excels table (excels)
+                  knex("interests_excels").where({"user_id": users[0].id})
+                  .insert(userExcelInsert)
                   .then(function() {
-                    console.log("Made it through!");
-                    res.redirect(`/users/${req.session.username}`);
+                    var links = (req.body.links).split(/\s*,\s*/g);
+                    var userLinkInsert = [];
+                    links.map((link) => {
+                      userLinkInsert.push({
+                        "user_id": userId,
+                        "source": link
+                      });
+                    });
+                    // Insert data into the links table
+                    knex("links").where({"user_id": userId}).del();
+                    knex("links").insert(userLinkInsert)
+                    .then(function() {
+                      res.redirect(`/users/${req.session.username}`);
+                    });
                   });
-                });
+              });
             });
           });
         });
