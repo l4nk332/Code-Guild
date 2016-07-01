@@ -162,10 +162,7 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">FileTransfer</h4>
-                                    <div class="text-center m-t-10">
-                                    <button id="share-file">Share File</button>
-                                    <div id="files-container"></div>
-                                    </div>
+                                   
                                 </div>
                             </div><!-- end col -->
                         </div>
