@@ -9,8 +9,9 @@ var cookieSession = require('cookie-session');
 router.get('/', function(req, res, next) {
   if (req.session.username) {
     res.redirect(`/users/${req.session.username}`);
-  }
+  }else{
   res.render('register.nunjucks', { title: 'CodeGuild' });
+  }
 });
 
 router.post('/', function (req, res) {
