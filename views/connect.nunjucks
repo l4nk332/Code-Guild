@@ -80,14 +80,17 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            <!-- Top Bar Start -->
-            <div class="navbar-default">
-                    <div class="text-center">
-                        <a href="index" class="logo">
-                            <i class="zmdi zmdi-toys icon-c-logo"></i><span>Code<span>Guild</span></span>
-                        </a>
-                    </div>
-                </div>
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header"> <a href="/" class="logo">Code Guild</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav"><a href="/users">Home</a>
+            </li>
+            <li class="nav"><a href="/logout">Logout</a>
+            </li>
+        </ul>
+          
+    </div>
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
@@ -161,7 +164,7 @@
                                     <h4 class="header-title m-t-0">FileTransfer</h4>
                                     <div class="text-center m-t-10">
                                     <button id="share-file">Share File</button>
-                                    <div id="file-container"></div>
+                                    <div id="files-container"></div>
                                     </div>
                                 </div>
                             </div><!-- end col -->
@@ -242,17 +245,16 @@
                 document.getElementById('input-text-chat').focus();
             }
             connection.onmessage = appendDIV;
-            connection.filesContainer = document.getElementById('file-container');
+            connection.filesContainer = document.getElementById('files-container');
 
             connection.onopen = function() {
-                document.getElementById('share-file').disabled = false;
-                document.getElementById('input-text-chat').disabled = false;
-                document.querySelector('h1').innerHTML = 'You are connected with: ' + connection.getAllParticipants().join(', ');
+               document.getElementById('share-file').disabled = false;
+               document.getElementById('input-text-chat').disabled = false;
             };
 
             connection.onclose = function() {
                 if(connection.getAllParticipants().length) {
-                    document.querySelector('h1').innerHTML = 'You are still connected with: ' + connection.getAllParticipants().join(', ');
+                    console.log('You are still connected with: ' + connection.getAllParticipants().join(', '));
                 }
                 else {
                     document.querySelector('h1').innerHTML = 'Seems session has been closed or all participants left.';
@@ -272,7 +274,7 @@
                   (connection.sessionid);
                   //console.log('connection sessionid is: ' + connection.sessionid)
                 });
-
+            connection.autoCloseEntireSession = true;
             // ......................................................
             // ................FileSharing/TextChat Code.............
             // ......................................................
