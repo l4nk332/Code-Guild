@@ -47,7 +47,7 @@
         <div class="modal-middle">
           <div class="btn-group btn-group-justified button-request-group" role="group" aria-label="...">
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default" id="yes"><span class="glyphicon glyphicon-ok"></span><a href=></button>
+              <a href=""><button type="button" class="btn btn-default" id="yes"><span class="glyphicon glyphicon-ok"></span></button></a>
             </div>
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-default" id="no"><span class="glyphicon glyphicon-remove"></span></button>

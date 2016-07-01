@@ -6,12 +6,13 @@ $( document ).ready(function() {
 
   socket.on('session query', function (modalInfo) {
     var sessionUsersString = username + '#' + modalInfo.student;
-    console.log(modalInfo);
+    var sessionURL = 'connect/' + sessionUsersString
+
     // put received student info into modal
     $('#studentPhoto').attr('src', modalInfo.studentPhoto);
     $('#requesting-user').text(modalInfo.student);
     $('#session-type').text(modalInfo.sessionType);
-    $('#yes').closest('href', 'connect/' + sessionUsersString);
+    $('#yes').parent('a').attr('href', sessionURL);
     // show modal
     $("#overlay").removeClass("hide");
     $("body").css({overflow: "hidden"});
