@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
 	        password: bcrypt.hashSync('student', 10),
 	        auth_acct: null,
 	        bio: 'Hi my name is Jimbob and I love programming! I have been coding for a few years now and enjoy teaching my fellow coders!',
-	        available: true,
+	        available: false,
         });
     })
     .then(function () {
@@ -23,7 +23,7 @@ exports.seed = function(knex, Promise) {
 	        password: bcrypt.hashSync('teacher', 10),
 	        auth_acct: null,
 	        bio: 'I am pretty cool. Expert in all things programming. If you need help feel free to reach out!',
-	        available: true,
+	        available: false,
         });
     })
     .then(function () {
@@ -35,7 +35,7 @@ exports.seed = function(knex, Promise) {
 	        password: bcrypt.hashSync('reviewer', 10),
 	        auth_acct: null,
 	        bio: 'Sup, my name is Rob and I am a code review guru. I am not afraid to tell you what is on my mind and promise to make your code much cleaner. Hit me up bro...',
-	        available: true,
+	        available: false,
         });
     })
     .then(function () {
@@ -47,7 +47,7 @@ exports.seed = function(knex, Promise) {
 	        password: bcrypt.hashSync('student', 10),
 	        auth_acct: null,
 	        bio: 'Arigato! I am an open book. Learning is my forte.',
-	        available: true,
+	        available: false,
         });
     })
     .then(function () {

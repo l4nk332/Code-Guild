@@ -1,20 +1,48 @@
+
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-    <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="/images/favicon.ico">
-	<title>CodeGuild - Connect Page</title>
+
+        <link rel="shortcut icon" href="images/favicon.ico">
+
+        <title>CodeGuild - {{uniqueRoomId}}</title>
+
         <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="/css/core.css" rel="stylesheet" type="text/css" />
         <link href="/css/components.css" rel="stylesheet" type="text/css" />
         <link href="/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
-    <!-- Style Firepad -->
-    <style>
+        <script src="/js/jquery.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+        <!-- Load Firebase Project -->
+        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyAHGAcseCSmhX8vIff6T3cuN2KZMYiXrdI",
+            authDomain: "firepad-test-37da6.firebaseapp.com",
+            databaseURL: "https://firepad-test-37da6.firebaseio.com",
+            storageBucket: "firepad-test-37da6.appspot.com",
+          };
+          firebase.initializeApp(config);
+        </script>
+        <!-- CodeMirror -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.css" />
+
+        <!-- Load CodeMirror mode/theme -->
+        <link rel='stylesheet' href="/css/theme/midnight.css" />
+        <script src="/js/mode/javascript.js"></script>
+
+        <!-- Firepad -->
+        <link rel="stylesheet" href="/css/firepad.css" />
+        <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
+        <style>
         video {
             object-fit: fill;
             width: 30%;
@@ -36,171 +64,132 @@
             padding: 5px 10px;
         }
     </style>
-    <script src="/js/modernizr.min.js"></script>
-</head>
+        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
 
-<body>
-	 <header id="topnav">
-            <div class="navbar-default">
-                <div class="container">
-                    <div class="topbar-left">
-                        <a href="index" class="logo">
-                            <span>Code<span>Guild</span></span>
-                        </a>
+        <script src="/js/modernizr.min.js"></script>
+
+    </head>
+
+    <body>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header"> <a href="/" class="logo">Code Guild</a>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav"><a href="/users">Home</a>
+            </li>
+            <li class="nav"><a href="/logout">Logout</a>
+            </li>
+        </ul>
+
+    </div>
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">Video</h4>
+                                    <div class="text-center m-t-10">
+                                    <div class="make-center">
+                                    <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+                                    </div>
+                                    <div id="videos-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">IDE</h4>
+                                    <div class="text-center m-t-10">
+                                       <div id="firepad"></div>
+                                    <script>
+                                    var firepadURL='https://firepad-test-37da6.firebaseio.com/firepads/{{ uniqueRoomid }}'
+                                      var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ uniqueRoomId }}');
+                                      var codeMirror = CodeMirror(document.getElementById('firepad'), {
+                                            lineWrapping: false,
+                                            mode: "javascript",
+                                            theme: 'midnight',
+                                            smartIndent: true,
+                                            lineNumbers: true,
+                                            fixedGutter: false,
+                                            autofocus: true
+                                        });
+                                      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+                                          { richTextShortcuts: false, richTextToolbar: false, defaultText: '// Code here...' });
+
+                                    </script>
+                                    <style>
+                                    .firepad {
+                                      width: 80%;
+                                      height: 450px;
+                                      margin: auto;
+                                              }
+                                    </style>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">Chat</h4>
+                                    <div class="text-center m-t-10">
+                                    <input type="text" id="input-text-chat" placeholder="Enter Text Chat">
+                                    <div class="chat-output"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">FileTransfer</h4>
+                                   
+                                </div>
+                            </div><!-- end col -->
+                        </div>
                     </div>
-                </div>
-            </div>    
-    </header> 
+               </div>
+        </div>
 
-<article>
-        <section class="experiment">
-            <div class="make-center">
-                <input type="text" id="room-id" value="abcdef">
-                <button id="open-room">Open Room</button>
-                <button id="join-room">Join Room</button>
-                <button id="open-or-join-room">Auto Open Or Join Room</button>
-
-                <br><br>
-                <input type="text" id="input-text-chat" placeholder="Enter Text Chat" disabled>
-                <button id="share-file" disabled>Share File</button>
-                <br><br>
-                <button id="btn-leave-room" disabled>Leave /or close the room</button>
-
-                <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
-            </div>
-
-            <div id="chat-container">
-                <div id="file-container"></div>
-                <div class="chat-output"></div>
-            </div>
-
-            <div id="videos-container"></div>
-        </section>
-        <!-- Firebase -->
-		<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-
-		<!-- Load Firebase Project -->
-		<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-		<script>
-		  // Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyAHGAcseCSmhX8vIff6T3cuN2KZMYiXrdI",
-		    authDomain: "firepad-test-37da6.firebaseapp.com",
-		    databaseURL: "https://firepad-test-37da6.firebaseio.com",
-		    storageBucket: "firepad-test-37da6.appspot.com",
-		  };
-		  firebase.initializeApp(config);
-		</script>
-			<!-- CodeMirror -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.css" />
-
-		<!-- Load CodeMirror mode/theme -->
-		<link rel='stylesheet' href="/css/theme/midnight.css" />
-		<script src="/js/mode/javascript.js"></script>
-
-		<!-- Firepad -->
-		<link rel="stylesheet" href="/css/firepad.css" />
-		<script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
         <!-- <script src="/dist/rmc3.min.js"></script> -->
         <script src="/js/rmc3.min.js"></script>
 
         <!-- custom layout for HTML5 audio/video elements -->
         <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
-        
+
         <!-- <script src="/dev/FileBufferReader.js"></script> -->
         <script src="/js/rmc3.fbr.min.js"></script>
 
         <!-- socket.io for signaling -->
         <script src="/js/socket.io.js"></script>
-
         <script>
-            // ......................................................
-            // .......................UI Code........................
-            // ......................................................
-
-            document.getElementById('open-room').onclick = function() {
-                disableInputButtons();
-                connection.open(document.getElementById('room-id').value, function() {
-                    showRoomURL(connection.sessionid);
-                });
-            };
-
-            document.getElementById('join-room').onclick = function() {
-                disableInputButtons();
-                connection.join(document.getElementById('room-id').value);
-            };
-
-            document.getElementById('open-or-join-room').onclick = function() {
-                disableInputButtons();
-                connection.openOrJoin(document.getElementById('room-id').value, function(isRoomExists, roomid) {
-                    if(!isRoomExists) {
-                        showRoomURL(roomid);
-                    }
-                });
-            };
-
-            document.getElementById('btn-leave-room').onclick = function() {
-                this.disabled = true;
-
-                if(connection.isInitiator) {
-                    // use this method if you did NOT set "autoCloseEntireSession===true"
-                    // for more info: https://github.com/muaz-khan/RTCMultiConnection#closeentiresession
-                    connection.closeEntireSession(function() {
-                        document.querySelector('h1').innerHTML = 'Entire session has been closed.';
-                    });
-                }
-                else {
-                    connection.leave();
-                }
-            };
-
-            // ......................................................
-            // ................FileSharing/TextChat Code.............
-            // ......................................................
-
-            document.getElementById('share-file').onclick = function() {
-                var fileSelector = new FileSelector();
-                fileSelector.selectSingleFile(function(file) {
-                    connection.send(file);
-                });
-            };
-
-            document.getElementById('input-text-chat').onkeyup = function(e) {
-                if (e.keyCode != 13) return;
-
-                // removing trailing/leading whitespace
-                this.value = this.value.replace(/^\s+|\s+$/g, '');
-                if (!this.value.length) return;
-
-                connection.send(this.value);
-                appendDIV(this.value);
-                this.value = '';
-            };
-
-            var chatContainer = document.querySelector('.chat-output');
-
-            function appendDIV(event) {
-                var div = document.createElement('div');
-                div.innerHTML = event.data || event;
-                chatContainer.insertBefore(div, chatContainer.firstChild);
-                div.tabIndex = 0;
-                div.focus();
-
-                document.getElementById('input-text-chat').focus();
-            }
-
-            // ......................................................
-            // ..................RTCMultiConnection Code.............
-            // ......................................................
+    // ......................................................
+    // ..................RTCMultiConnection Code.............
+    // ......................................................
 
             var connection = new RTCMultiConnection();
 
             // by default, socket.io server is assumed to be deployed on your own URL
             connection.socketURL = 'https://codeguild.dyndns.org/';
-
-            // comment-out below line if you do not have your own socket.io server
-            //connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
             connection.socketMessageEvent = 'codeguild';
 
@@ -243,43 +232,30 @@
                 }
             };
 
+             function appendDIV(event) {
+                var div = document.createElement('div');
+                div.innerHTML = event.data || event;
+                chatContainer.insertBefore(div, chatContainer.firstChild);
+                div.tabIndex = 0;
+                div.focus();
+
+                document.getElementById('input-text-chat').focus();
+            }
             connection.onmessage = appendDIV;
-            connection.filesContainer = document.getElementById('file-container');
+            connection.filesContainer = document.getElementById('files-container');
 
             connection.onopen = function() {
-                document.getElementById('share-file').disabled = false;
-                document.getElementById('input-text-chat').disabled = false;
-                document.getElementById('btn-leave-room').disabled = false;
-
-                document.querySelector('h1').innerHTML = 'You are connected with: ' + connection.getAllParticipants().join(', ');
+               document.getElementById('share-file').disabled = false;
+               document.getElementById('input-text-chat').disabled = false;
             };
 
             connection.onclose = function() {
                 if(connection.getAllParticipants().length) {
-                    document.querySelector('h1').innerHTML = 'You are still connected with: ' + connection.getAllParticipants().join(', ');
+                    console.log('You are still connected with: ' + connection.getAllParticipants().join(', '));
                 }
                 else {
                     document.querySelector('h1').innerHTML = 'Seems session has been closed or all participants left.';
                 }
-            };
-
-            connection.onEntireSessionClosed = function(event) {
-                document.getElementById('share-file').disabled = true;
-                document.getElementById('input-text-chat').disabled = true;
-                document.getElementById('btn-leave-room').disabled = true;
-
-                document.getElementById('open-or-join-room').disabled = false;
-                document.getElementById('open-room').disabled = false;
-                document.getElementById('join-room').disabled = false;
-                document.getElementById('room-id').disabled = false;
-
-                connection.attachStreams.forEach(function(stream) {
-                    stream.stop();
-                });
-
-                // don't display alert for moderator
-                if(connection.userid === event.userid) return;
-                document.querySelector('h1').innerHTML = 'Entire session has been closed by the moderator: ' + event.userid;
             };
 
             connection.onUserIdAlreadyTaken = function(useridAlreadyTaken, yourNewUserId) {
@@ -287,32 +263,46 @@
                 connection.join(useridAlreadyTaken);
             };
 
-            function disableInputButtons() {
-                document.getElementById('open-or-join-room').disabled = true;
-                document.getElementById('open-room').disabled = true;
-                document.getElementById('join-room').disabled = true;
-                document.getElementById('room-id').disabled = true;
+            // ......................................................
+            // .......................UI Code........................
+            // ......................................................
+            window.onload = function() {
+            connection.openOrJoin('{{uniqueRoomId}}', function() {
+                  (connection.sessionid);
+                  //console.log('connection sessionid is: ' + connection.sessionid)
+                });
+            connection.autoCloseEntireSession = true;
+            // ......................................................
+            // ................FileSharing/TextChat Code.............
+            // ......................................................
+            document.getElementById('share-file').onclick = function() {
+                var fileSelector = new FileSelector();
+                fileSelector.selectSingleFile(function(file) {
+                    connection.send(file);
+                });
+            };
+            document.getElementById('input-text-chat').onkeyup = function(e) {
+                if (e.keyCode != 13) return;
+                // removing trailing/leading whitespace
+                this.value = this.value.replace(/^\s+|\s+$/g, '');
+                if (!this.value.length) return;
+                connection.send(this.value);
+                appendDIV(this.value);
+                this.value = '';
+            };
+            var chatContainer = document.querySelector('.chat-output');
+            function appendDIV(event) {
+                var div = document.createElement('div');
+                div.innerHTML = event.data || event;
+                chatContainer.insertBefore(div, chatContainer.firstChild);
+                div.tabIndex = 0;
+                div.focus();
+                document.getElementById('input-text-chat').focus();
             }
 
             // ......................................................
             // ......................Handling Room-ID................
             // ......................................................
-
-            function showRoomURL(roomid) {
-                var roomHashURL = '#' + roomid;
-                var roomQueryStringURL = '?roomid=' + roomid;
-
-                var html = '<h2>Unique URL for your room:</h2><br>';
-
-                html += 'Hash URL: <a href="' + roomHashURL + '" target="_blank">' + roomHashURL + '</a>';
-                html += '<br>';
-                html += 'QueryString URL: <a href="' + roomQueryStringURL + '" target="_blank">' + roomQueryStringURL + '</a>';
-
-                var roomURLsDiv = document.getElementById('room-urls');
-                roomURLsDiv.innerHTML = html;
-
-                roomURLsDiv.style.display = 'block';
-            }
 
             (function() {
                 var params = {},
@@ -327,17 +317,14 @@
                 window.params = params;
             })();
 
-            var roomid = '';
+            var roomid = '{{uniqueRoomName}}';
+            console.log(roomid);
             if (localStorage.getItem(connection.socketMessageEvent)) {
                 roomid = localStorage.getItem(connection.socketMessageEvent);
             } else {
                 roomid = connection.token();
             }
-            document.getElementById('room-id').value = roomid;
-            document.getElementById('room-id').onkeyup = function() {
-                localStorage.setItem(connection.socketMessageEvent, this.value);
-            };
-            
+
             var hashString = location.hash.replace('#', '');
 
             var roomid = params.roomid;
@@ -361,71 +348,14 @@
                     });
                 })();
 
-                disableInputButtons();
-            }
+            };
+             };
         </script>
-    </article>
-    <div id="firepad"></div>
-			<script>
-			  var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ id }}');
-			  var codeMirror = CodeMirror(document.getElementById('firepad'), {
-					lineWrapping: false,
-					mode: "javascript",
-					theme: 'midnight',
-					smartIndent: true,
-					lineNumbers: true,
-					fixedGutter: false,
-					autofocus: true
-				});
-			  var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
-			      { richTextShortcuts: false, richTextToolbar: false, defaultText: '// Code here...' });
-			</script>
-			<style>
-			.firepad {
-			  width: 80%;
-			  height: 450px;
-			  margin: auto;
-			          }
-		    </style>
-		     <!-- Load Firebase Project -->
-        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
         <script>
-          // Initialize Firebase
-          var config = {
-            apiKey: "AIzaSyAHGAcseCSmhX8vIff6T3cuN2KZMYiXrdI",
-            authDomain: "firepad-test-37da6.firebaseapp.com",
-            databaseURL: "https://firepad-test-37da6.firebaseio.com",
-            storageBucket: "firepad-test-37da6.appspot.com",
-          };
-          firebase.initializeApp(config);
+            var resizefunc = [];
         </script>
-		    
-		            <!-- CodeMirror -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.css" />
 
-        <!-- Load CodeMirror mode/theme -->
-        <link rel='stylesheet' href="/css/theme/midnight.css" />
-        <script src="/js/mode/javascript.js"></script>
-
-        <!-- Firepad -->
-        <link rel="stylesheet" href="/css/firepad.css" />
-        <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
-        <!-- <script src="/dist/rmc3.min.js"></script> -->
-        <script src="/js/rmc3.min.js"></script>
-
-        <!-- custom layout for HTML5 audio/video elements -->
-        <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
-        
-        <!-- <script src="/dev/FileBufferReader.js"></script> -->
-        <script src="/js/rmc3.fbr.min.js"></script>
-
-        <!-- socket.io for signaling -->
-        <script src="/js/socket.io.js"></script>
-		    
-		    
-		<!-- jQuery  -->
-        <script src="/js/jquery.min.js"></script>
+        <!-- jQuery  -->
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/detect.js"></script>
         <script src="/js/fastclick.js"></script>
@@ -435,5 +365,5 @@
         <script src="/js/wow.min.js"></script>
         <script src="/js/jquery.nicescroll.js"></script>
         <script src="/js/jquery.scrollTo.min.js"></script>
-</body>
+    </body>
 </html>

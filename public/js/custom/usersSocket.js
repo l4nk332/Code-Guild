@@ -1,33 +1,96 @@
 $( document ).ready(function() {
-  var username = $('body').attr('data-loggedInUsername');
-  var socket = io.connect('http://localhost:8080');
+  var username = $('body').attr('data-loggedinusername');
+  var socket = io.connect('https://codeguild.dyndns.org');
 
   socket.emit('user logged in', username);
 
-  socket.on('session query', function (requesterName) {
-    console.log('requesterName is: ' + requesterName);
-    $('body').append(`<div class="sessionCard">${requesterName} is requesting a session with you</div>`)
-    $('.startSession').click(function(e) {
-      // open new tab in this teacher's browser or modal with session window
+// click listener to emit session request
+  $('.session-request').click(function() {
+    var teacher = $(this).closest('.card').attr('data-teacherusername');
+    var sessionType = $(this).text();
+    var studentPhoto = $('body').attr('data-loggedinuserphoto');
+
+      socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
+  })
+
+// socket listener to receive session request in modal
+  socket.on('session query', function (modalInfo) {
+    var sessionUsersString = username + '#' + modalInfo.student;
+    var sessionURL = '/connect/' + sessionUsersString
+    var teacherPhoto = $('body').attr('data-loggedinuserphoto');
+    var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: teacherPhoto, teacherName: username}
+    // put received student info into modal
+    console.log(JSON.stringify(sessionLinkObj));
+
+    $('#studentPhoto').attr('src', modalInfo.studentPhoto);
+    $('#requesting-user').text(modalInfo.student);
+    $('#session-type').text(modalInfo.sessionType);
+    $('#yes').parent('a').attr('href', sessionURL);
+    // show modal
+    $("#overlay").removeClass("hide");
+    $("body").css({overflow: "hidden"});
+
+    $('#yes').click(function() {
+      // open new page in this teacher's browser
+      socket.emit('session initiated', sessionLinkObj);
     })
-    socket.emit('session initiated', sessionURL);
+
+    $('#no').click(function() {
+      // socket.emit('session declined')
+      $("#overlay").addClass("hide");
+      $("body").css({overflow: "visible"});
+    })
+
   })
 
-  socket.on('session link', function (sessionURL) {
-    // open new tab in this student's browser or modal with session window
+  socket.on('session link', function (sessionLinkObj) {
+    // launch second modal
+    console.log("final step hit! sessionLinkObj is: " + JSON.stringify(sessionLinkObj));
+
+    // $('#teacherPhoto').attr('src', sessionLinkObj.teacherPhoto);
+    $('#responding-user').text(sessionLinkObj.teacherName);
+    $('#yes2').parent('a').attr('href', sessionLinkObj.sessionURL);
+    // show modal
+    $("#overlay2").removeClass("hide");
+    $("body").css({overflow: "hidden"});
+
+    $('#yes2').click(function() {
+
+    })
+
+    $('#no2').click(function() {
+      // socket.emit('session declined')
+      $("#overlay2").addClass("hide");
+      $("body").css({overflow: "visible"});
+    })
   })
 
+  socket.on('status change', function(userStatusChange) {
+    var statusChangeUser = userStatusChange.username;
+    var userStatus = userStatusChange.status;
+    var cardToChange = $('.card').attr('data-teacherusername', statusChangeUser).closest('.status-container');
 
+    if (userStatus === "available") {
+      $(cardToChange).html("<span class='status-text'>Available</span><span class='status-available'></span>");
+    }
+    else {
+      $(cardToChange).html("<span class='status-text'>Unavailable</span><span class='status-unavailable'></span>");
+    }
+  })
+
+// socket emmission when user changes status manually
   // $('.userStatus').click(function(e) {
-  //   var userStatus = e.target.val();
+  //   var userStatus = {username: username, status: e.target.val()};
   //   socket.emit('status change', userStatus);
   // })
 
-  $('.requestSession').click(function() {
-    var teacher = $(this).attr('id');
-    console.log('var teacher is: ' + teacher);
-      socket.emit('request session', {teacher: teacher, student: username});
-  })
+  // socket.on('status change', function(userAndStatus) {
+  //   var statusUser = userAndStatus.username;
+  //   var status = userAndStatus.status;
+  //   code needed here to change status of specific user in the dom
+  // })
+
+
 
 
 

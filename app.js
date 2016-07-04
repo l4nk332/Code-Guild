@@ -11,14 +11,16 @@ var users = require('./routes/users');
 var connect = require('./routes/connect');
 var about = require('./routes/about');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var about = require('./routes/about');
 var register = require('./routes/register');
 var testing = require('./routes/testing');
+var knex = require('./db/knex');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-server.listen(8080);
+server.listen(9000);
 
 
 // view engine setup
@@ -47,6 +49,7 @@ app.use(cookieSession({
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
+app.use('/logout', logout);
 app.use('/about', about);
 app.use('/register', register);
 app.use('/testing', testing);
@@ -62,29 +65,47 @@ io.on('connection', function (socket) {
   socket.on("user logged in", function (username) {
 
     loggedInUsers[username] = socket.id;
-    console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
+    knex('users').where('username', username).update('available', true);
+    var userStatus = {username: username, status: "available"}
+    socket.broadcast.emit('status change', userStatus);
 
     socket.on('request session', function(teacherStudent){
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
-      console.log('teacherSocketId is: ' + teacherSocketId);
-      socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent.student);
+      socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent);
 
-      socket.on('session initiated', function(sessionURL) {
-        var studentSocketId =loggedInUsers[studentName];
-        socket.broadcast.to(studentSocketId).emit('session link', sessionURL);
+      socket.on('session initiated', function(sessionLinkObj) {
+        console.log('sessionLinkObj is: ' + JSON.stringify(sessionLinkObj));
+        var studentSocketId = loggedInUsers[teacherStudent.student];
+        console.log(studentSocketId);
+        socket.broadcast.to(studentSocketId).emit('session link', sessionLinkObj);
       })
     });
 
-    socket.on('status change', function(availability){
-      socket.broadcast.emit('status change', availability);
-    });
-
-    socket.on('disconnect', function (socket) {
+    socket.on('disconnect', function () {
       delete loggedInUsers[username];
-
-      io.emit('logged out', username);
+      knex('users').where('username', username).update('available', false);
+      userStatus = {username: username, status: "unavailable"};
+      console.log('userStatus is: ' + userStatus);
+      socket.broadcast.emit('status change', userStatus);
     });
+
+    // socket.on('status change', function(userStatus){
+    //   socket.broadcast.emit('status change', userStatus);
+    //
+    //   var userStatusChange = {username: username, status: available}
+    //   var available;
+    //
+    //   if (userStatus.status === 'available') {
+    //     available = true;
+    //   } else {
+    //     available = false;
+    //   }
+    //
+    //   knex('users').where('username', userStatus.username).update('available', available);
+    // });
+
   })
+
 });
 
 // catch 404 and forward to error handler
