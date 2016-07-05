@@ -146,13 +146,11 @@
 																				<option value="Pascal">Pascal</option>
 																				<option value="Delphi">Delphi</option>
                                       </select>
-                                  </div>
-																	<div class="col-xs-6 col-xs-offset-3" id="submitButton">
-																		<button class="btn btn-custom btn-bordred btn-block waves-effect waves-light text-uppercase" type="submit">
-																			Save
-																		</button>
-																	</div>
-																</form>
+                      </div>
+						<div class="col-xs-6 col-xs-offset-3" id="submitButton">
+							<button class="btn btn-custom btn-bordred btn-block waves-effect waves-light text-uppercase" type="submit">Save</button>
+							</div>
+							</form>
                               </div>
                       </div><!-- end col -->
                   </div><!-- end row -->

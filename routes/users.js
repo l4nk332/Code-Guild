@@ -20,7 +20,7 @@ router.get('/:username', function(req, res, next) {
           });
           // Select recommended users with titles and ids of what they excel at (matching to an array of ids)
             knex('u').distinct('u.username')
-              .select('u.id', 'u.first_name', 'u.last_name', 'u.auth_acct', 'u.bio', 'u.available', 'u.photo')
+              .select('u.id', 'u.first_name', 'u.last_name', 'u.auth_acct', 'u.bio', 'u.available')
               .from('users as u')
               .join('interests_excels as i_e', 'i_e.user_id', '=', 'u.id')
               .join('topics as t', 't.id', '=', 'i_e.topic_id')
@@ -28,7 +28,7 @@ router.get('/:username', function(req, res, next) {
               .whereNot('u.username', '=', req.session.username)
               .then(function(recommendedUsers) {
                 //res.json(recommendedUsers);
-                res.render('users.nunjucks', {users: recommendedUsers, loggedInUser: {username: req.session.username, photo: req.session.photo}});
+                res.render('users.nunjucks', {users: recommendedUsers, loggedInUser: {username: req.session.username }});
               })
               .catch(function(err) {
                 console.log(`There was an error gathering recommended users for user ${req.session.username}: ${err}`);
@@ -73,12 +73,11 @@ router.post('/:username/profile', function(req, res, next) {
       "first_name": req.body.firstName,
       "last_name": req.body.lastName,
       "email": req.body.email,
-      "photo": req.body.photo,
       "bio": req.body.bio
     }).returning("*")
     .then(function(users) {
       // Set avatar photo on session
-      req.session.photo = users[0].photo;
+      // req.session.photo = users[0].photo;
       // Set user id for later use (in join table inserts bellow)
       var userId = users[0].id;
       // Getting the topic id of all users interests
