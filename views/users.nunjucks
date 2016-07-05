@@ -102,7 +102,7 @@
             {% if user.photo %}
                           <img class="img-circle" src="{{ user.photo }}" width="100">
             {% else %}
-              <img class="img-circle" src="https://pbs.twimg.com/profile_images/558109954561679360/j1f9DiJi.jpeg" width="100">
+              <img class="img-circle" src="../images/user.png" width="100">
             {% endif %}
                         <hr>
                         <span class="username">{{ user.username }}</span>
@@ -175,7 +175,5 @@
       {% endfor %}
         <!-- End of container for cards -->
         </div>
-             <!-- jQuery  -->
-
   </body>
 </html>
