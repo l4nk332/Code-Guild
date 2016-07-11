@@ -5,12 +5,13 @@ $( document ).ready(function() {
   socket.emit('user logged in', username);
 
 // click listener to emit session request
-  $('.session-request').click(function() {
+  $('.session-request').click(function(e) {
+    e.preventDefault();
     var teacher = $(this).closest('.card').attr('data-teacherusername');
     var sessionType = $(this).text();
     var studentPhoto = $('body').attr('data-loggedinuserphoto');
 
-      socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
+    socket.emit('request session', {teacher: teacher, student: username, studentPhoto: studentPhoto, sessionType: sessionType});
   })
 
 // socket listener to receive session request in modal
@@ -18,25 +19,27 @@ $( document ).ready(function() {
     var sessionUsersString = username + '#' + modalInfo.student;
     var sessionURL = '/connect/' + sessionUsersString
     var teacherPhoto = $('body').attr('data-loggedinuserphoto');
-    var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: teacherPhoto, teacherName: username}
+    var sessionLinkObj = {sessionURL: sessionURL, teacherPhoto: teacherPhoto, teacherName: username, student: modalInfo.student}
     // put received student info into modal
-    console.log(JSON.stringify(sessionLinkObj));
 
     $('#studentPhoto').attr('src', modalInfo.studentPhoto);
     $('#requesting-user').text(modalInfo.student);
     $('#session-type').text(modalInfo.sessionType);
-    $('#yes').parent('a').attr('href', sessionURL);
     // show modal
     $("#overlay").removeClass("hide");
     $("body").css({overflow: "hidden"});
 
-    $('#yes').click(function() {
+    $('#yes').click(function(e) {
+      e.preventDefault();
       // open new page in this teacher's browser
+      console.log('once #yes is clicked sessionLinkObj is: ' + JSON.stringify(sessionLinkObj));
       socket.emit('session initiated', sessionLinkObj);
+      window.location.href = sessionURL;
     })
 
-    $('#no').click(function() {
+    $('#no').click(function(e) {
       // socket.emit('session declined')
+      e.preventDefault();
       $("#overlay").addClass("hide");
       $("body").css({overflow: "visible"});
     })

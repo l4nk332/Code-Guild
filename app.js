@@ -67,25 +67,28 @@ io.on('connection', function (socket) {
     loggedInUsers[username] = socket.id;
     knex('users').where('username', username).update('available', true);
     var userStatus = {username: username, status: "available"}
+    console.log(username + 'socket connected!');
+    console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
     socket.broadcast.emit('status change', userStatus);
 
     socket.on('request session', function(teacherStudent){
       var teacherSocketId = loggedInUsers[teacherStudent.teacher];
       socket.broadcast.to(teacherSocketId).emit('session query', teacherStudent);
-
-      socket.on('session initiated', function(sessionLinkObj) {
-        console.log('sessionLinkObj is: ' + JSON.stringify(sessionLinkObj));
-        var studentSocketId = loggedInUsers[teacherStudent.student];
-        console.log(studentSocketId);
-        socket.broadcast.to(studentSocketId).emit('session link', sessionLinkObj);
-      })
     });
+
+    socket.on('session initiated', function(sessionLinkObj) {
+      console.log('sessionLinkObj received in app.js!: ' + JSON.stringify(sessionLinkObj));
+      var studentSocketId = loggedInUsers[sessionLinkObj.student];
+      console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers), 'student and studentSocketId is: ' + sessionLinkObj.student + ' '+ studentSocketId)
+      socket.broadcast.to(studentSocketId).emit('session link', sessionLinkObj);
+    })
 
     socket.on('disconnect', function () {
       delete loggedInUsers[username];
+      console.log('disconnected username is: ' + username);
       knex('users').where('username', username).update('available', false);
       userStatus = {username: username, status: "unavailable"};
-      console.log('userStatus is: ' + userStatus);
+      console.log(userStatus.username + ' socket disconnected!');
       socket.broadcast.emit('status change', userStatus);
     });
 
