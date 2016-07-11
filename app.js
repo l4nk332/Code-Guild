@@ -63,9 +63,9 @@ var loggedInUsers = {};
 io.on('connection', function (socket) {
 
   socket.on("user logged in", function (username) {
-
+    console.log('username is: ' + username);
     loggedInUsers[username] = socket.id;
-    knex('users').where('username', username).update('available', true);
+    knex('users').where('username', '=', username).update('available', true).then(function(results) {});
     var userStatus = {username: username, status: "available"}
     console.log(username + 'socket connected!');
     console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
@@ -86,7 +86,7 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
       delete loggedInUsers[username];
       console.log('disconnected username is: ' + username);
-      knex('users').where('username', username).update('available', false);
+      knex('users').where('username', '=', username).update('available', false).then(function(results) {});
       userStatus = {username: username, status: "unavailable"};
       console.log(userStatus.username + ' socket disconnected!');
       socket.broadcast.emit('status change', userStatus);
