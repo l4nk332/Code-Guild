@@ -1,6 +1,7 @@
 $( document ).ready(function() {
   var username = $('body').attr('data-loggedinusername');
-  var socket = io.connect('https://codeguild.dyndns.org/');
+  // var socket = io.connect('https://codeguild.dyndns.org/');
+  var socket = io.connect('localhost:9000');
 
 
   socket.emit('user logged in', username);
@@ -73,14 +74,14 @@ $( document ).ready(function() {
     console.log('status change is: ' + JSON.stringify(userStatusChange));
     var statusChangeUser = userStatusChange.username;
     var userStatus = userStatusChange.status;
-    var cardToChange = $(`span:contains('${statusChangeUser}')`).closest('.status-container');
+    var cardToChange = $("div[data-teacherusername='" + statusChangeUser + "']").find('.status-container');
     console.log('cardToChange is: ' + JSON.stringify(cardToChange));
 
     if (userStatus === "available") {
-      $(cardToChange).html("<span class='status-text'>Available</span><span class='status-available'></span>");
+      cardToChange.html("<span class='status-text'>Available</span> <span class='status-available'></span>");
     }
     else {
-      $(cardToChange).html("<span class='status-text'>Unavailable</span><span class='status-unavailable'></span>");
+      cardToChange.html("<span class='status-text'>Unavailable</span> <span class='status-unavailable'></span>");
     }
   })
 
