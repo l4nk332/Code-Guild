@@ -34,11 +34,7 @@
         <ul class="nav navbar-nav pull-right">
             <li><a href="/users/{{loggedInUser.username}}/profile"><span class="glyphicon glyphicon-user"></span>  Profile</a></li>
             <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
-                </ul>
-
-
         </ul>
-
     </div>
 
     <!-- Modal section start -->
@@ -65,28 +61,6 @@
             </div>
           </div>
         </div>
-        <div class="modal-bottom">
-          <div class="message-input">
-            <div class="message-container">
-              <ul class="message-box clearfix">
-                <li class="pull-left"><span id="sender">John</span> Hey, hows it going?</li>
-                <li class="pull-right">What do you want? <span id="receiver"></span></li>
-                <li><span id="sender">John</span> Just checkin in...</li>
-                <li><span id="sender">John</span> Can I borrow 5 dollars?</li>
-                <li>Again?! <span id="receiver"></span></li>
-                <li>What the heck man! <span id="receiver"></span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Message...">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-send"></span>
-            </button>
-          </span>
-        </div>
       </div>
     </div>
     <!-- End first request modal -->
@@ -112,28 +86,6 @@
               <button type="button" class="btn btn-default" id="no2"><span class="glyphicon glyphicon-remove"></span></button>
             </div>
           </div>
-        </div>
-        <div class="modal-bottom">
-          <div class="message-input">
-            <div class="message-container">
-              <ul class="message-box clearfix">
-                <li class="pull-left"><span id="sender">John</span> Hey, hows it going?</li>
-                <li class="pull-right">What do you want? <span id="receiver"></span></li>
-                <li><span id="sender">John</span> Just checkin in...</li>
-                <li><span id="sender">John</span> Can I borrow 5 dollars?</li>
-                <li>Again?! <span id="receiver"></span></li>
-                <li>What the heck man! <span id="receiver"></span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Message...">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-send"></span>
-            </button>
-          </span>
         </div>
       </div>
     </div>
