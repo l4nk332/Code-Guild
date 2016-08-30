@@ -1,39 +1,53 @@
-# q2-project
-Quarter 2 Project involving live code tutoring
+# Code-Guild
 
-# Project Tasks
+## Overview
 
-**Essential**
-- [x] I github branch set-up
-- [x] I express generate/npm install dependencies
-- [x] I .gitignore, .env, node_modules etc.
-- [x] Y I create migrations and seed data
-- [x] O create base templates
-- [x] Y setup basic signup and login
-- [x] I setup basic text editor
-- [x] setup 1 to 1 video/audio
-- [ ] setup page with form once user signs up, to add profile info (topics, interests, excels, bio, photo,etc)
-- [ ] finish setting up landing page for user once logged in
-    - [ ] filters other users by availability, who excel in this user's interest, shows if they are available
-    - [ ] click on user to get more info,
-    - [ ] link to edit profile.
-    - [ ] request a session with another user
-    - [ ] Alert the user when a session is being requested by another user. Have buttons appear to confirm     or decline coding session.Â
-    - [ ] setup so that session can be initiated
+*Code-Guild* is a web-platform that connects developers from around the globe in a live coding environment. *Code-Guild* enables programmers to both teach the languages they are proficient in and learn the languages that interest them. Code review sessions allow developers to get a second opinion on a module of code.
 
-- [ ] create session page that incorporates firepad editor and rtc and special
+Here is a demo of the *Code-Guild* interface: [Connect Now](# Code-Guild)
+
+Simply visit the link and send it to a friend to connect.
+
+## Technologies
+
+The technologies implemented in the design and development of *Code Guild* include:
+
+* [Express Framework](https://expressjs.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [Knex.js](http://knexjs.org/)
+* [Socket.io](http://socket.io/)
+* [WebRTC](https://webrtc.org/)
+* [Firepad](https://firepad.io/#1)
+* [CodeMirror](https://codemirror.net/)
+
+## Deploy
+
+In order to deploy this project you first need to [install npm](https://www.npmjs.com/) if you haven't already.
+
+Once properly cloned or forked run `npm install` to locally install the dependencies for the project.
+
+To locally start the server run `npm start`, visit `http:localhost:9000` in your browser, and you should be off an running with a local instance of Code-Guild!
+
+## Challenges
+
+**Data Model**
+
+The first major hurdle encountered in the development of *Code-Guild* was how to approach modelling the data. The dynamic relationships between users made it difficult to determine how to track when a given user was a coding mentor or student. [Linking tables](https://en.wikipedia.org/wiki/Associative_entity) were used to match programmers who are interested in a particular language to programmers who excel in that language. The [Knex](http://knexjs.org/) query builder allowed us to asynchronously establish these connections, creating a seamless User-Experience.
+
+**Web Sockets**
+
+Once a user has logged in all recommended users will show up on their dashboard as either *available* or *unavailable*. The next step was to allow a user to request a session with another available user. Through the integration of [Socket.io](http://socket.io/) when UserA sends a request to UserB, a socket emitter sends a request to the web socket server, where it is processed and redirected to UserB. This triggers a socket event emitter in UserB client to drop down a request modal. When accepted the server genrates a unique hash and reroutes both UserA and UserB to the page where the coding session will take place.
+
+**WebRTC**
+
+As soon as a session is instantiated between two users a [signaling server](https://en.wikipedia.org/wiki/Session_Initiation_Protocol) establishes a real-time connection between the two client IP addresses. [Firepad](https://firepad.io/#1) along with [CodeMirror](https://codemirror.net/) allow for a shared workspace in which both users can share a single text editor with proper syntax highlighting. [Firepad](https://firepad.io/#1) also ensures that the all code left in the editor at the end of a session will be backed up in [Firebase](https://firebase.google.com/).
+
+## Next Steps
 
 
 
+## Contributors
 
-**Features**
-- [ ] video
-- [ ] make restful api
-- [ ] persisting IDE sessions
-- [ ] setup oAuth for github
-- [ ] create about page
-- [ ] search for users based on topic
-- [ ] excel = ranking system
-- [ ] monetization
-- [ ] record sessions
-- [ ] add code engines  
+* Yeshe Wingerd
+* Omar Sobh
+* Ian Jabour
