@@ -66,7 +66,7 @@ io.on('connection', function (socket) {
     console.log('username is: ' + username);
     loggedInUsers[username] = socket.id;
     knex('users').where('username', '=', username).update('available', true).then(function(results) {});
-    var userStatus = {username: username, status: "available"}
+    var userStatus = {username: username, status: "available"};
     console.log(username + 'socket connected!');
     console.log('loggedInUsers is: ' + JSON.stringify(loggedInUsers));
     socket.broadcast.emit('status change', userStatus);

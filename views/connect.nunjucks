@@ -64,12 +64,6 @@
             padding: 5px 10px;
         }
     </style>
-        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
 
         <script src="/js/modernizr.min.js"></script>
 
@@ -80,17 +74,14 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-    <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header"> <a href="/" class="logo">Code Guild</a>
-        </div>
-        <ul class="nav navbar-nav pull-right">
-            <li class="nav"><a href="/users">Home</a>
-            </li>
-            <li class="nav"><a href="/logout">Logout</a>
-            </li>
-        </ul>
-
-    </div>
+            <!-- Top Bar Start -->
+            <div class="navbar-default">
+                    <div class="text-center">
+                        <a href="index" class="logo">
+                            <i class="zmdi zmdi-toys icon-c-logo"></i><span>Code<span>Guild</span></span>
+                        </a>
+                    </div>
+                </div>
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
@@ -134,7 +125,7 @@
                                         });
                                       var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
                                           { richTextShortcuts: false, richTextToolbar: false, defaultText: '// Code here...' });
-
+                                    
                                     </script>
                                     <style>
                                     .firepad {
@@ -162,7 +153,10 @@
                                     <div class="dropdown pull-right">
                                     </div>
                                     <h4 class="header-title m-t-0">FileTransfer</h4>
-                                   
+                                    <div class="text-center m-t-10">
+                                    <button id="share-file">Share File</button>
+                                    <div id="file-container"></div>
+                                    </div>
                                 </div>
                             </div><!-- end col -->
                         </div>
@@ -171,16 +165,16 @@
         </div>
 
         <!-- <script src="/dist/rmc3.min.js"></script> -->
-        <script src="/js/rmc3.min.js"></script>
+        <script src="https://cdn.webrtc-experiment.com:443/rmc3.min.js"></script>
 
         <!-- custom layout for HTML5 audio/video elements -->
         <script src="https://cdn.webrtc-experiment.com/getMediaElement.js"></script>
-
+        
         <!-- <script src="/dev/FileBufferReader.js"></script> -->
-        <script src="/js/rmc3.fbr.min.js"></script>
+        <script src="https://cdn.webrtc-experiment.com:443/rmc3.fbr.min.js"></script>
 
         <!-- socket.io for signaling -->
-        <script src="/js/socket.io.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
         <script>
     document.getElementById('open-room').onclick = function() {
                 disableInputButtons();
@@ -246,6 +240,68 @@
                 document.getElementById('join-room').disabled = true;
                 document.getElementById('room-id').disabled = true;
             }
+<<<<<<< HEAD
+=======
+            connection.onmessage = appendDIV;
+            connection.filesContainer = document.getElementById('file-container');
+
+            connection.onopen = function() {
+                document.getElementById('share-file').disabled = false;
+                document.getElementById('input-text-chat').disabled = false;
+            };
+
+            connection.onclose = function() {
+                if(connection.getAllParticipants().length) {
+                    console.log( 'You are still connected with: ' + connection.getAllParticipants().join(', '));
+                }
+                else {
+                    document.querySelector('h1').innerHTML = 'Seems session has been closed or all participants left.';
+                }
+            };
+
+            connection.onUserIdAlreadyTaken = function(useridAlreadyTaken, yourNewUserId) {
+                // seems room is already opened
+                connection.join(useridAlreadyTaken);
+            };
+
+            // ......................................................
+            // .......................UI Code........................
+            // ......................................................
+            window.onload = function() {
+            connection.openOrJoin('{{uniqueRoomId}}', function() {
+                  (connection.sessionid);
+                  //console.log('connection sessionid is: ' + connection.sessionid)
+                });
+            connection.autoCloseEntireSession = true;
+            // ......................................................
+            // ................FileSharing/TextChat Code.............
+            // ......................................................
+            document.getElementById('share-file').onclick = function() {
+                var fileSelector = new FileSelector();
+                fileSelector.selectSingleFile(function(file) {
+                    connection.send(file);
+                });
+            };
+            document.getElementById('input-text-chat').onkeyup = function(e) {
+                if (e.keyCode != 13) return;
+                // removing trailing/leading whitespace
+                this.value = this.value.replace(/^\s+|\s+$/g, '');
+                if (!this.value.length) return;
+                connection.send(this.value);
+                appendDIV(this.value);
+                this.value = '';
+            };
+            var chatContainer = document.querySelector('.chat-output');
+            function appendDIV(event) {
+                var div = document.createElement('div');
+                div.innerHTML = event.data || event;
+                chatContainer.insertBefore(div, chatContainer.firstChild);
+                div.tabIndex = 0;
+                div.focus();
+                document.getElementById('input-text-chat').focus();
+            }
+
+>>>>>>> d1c2b833597b818b3cb76aef0d06ee37537c29dd
             // ......................................................
             // ......................Handling Room-ID................
             // ......................................................
@@ -271,16 +327,26 @@
                     params[d(match[1])] = d(match[2]);
                 window.params = params;
             })();
+<<<<<<< HEAD
             var roomid = '';
+=======
+
+            var roomid = '{{uniqueRoomId}}';
+            console.log(roomid);
+>>>>>>> d1c2b833597b818b3cb76aef0d06ee37537c29dd
             if (localStorage.getItem(connection.socketMessageEvent)) {
                 roomid = localStorage.getItem(connection.socketMessageEvent);
             } else {
                 roomid = connection.token();
+                console.log(roomid, "THIS IS THE CURRENT ROOMID")
             }
+<<<<<<< HEAD
             document.getElementById('room-id').value = roomid;
             document.getElementById('room-id').onkeyup = function() {
                 localStorage.setItem(connection.socketMessageEvent, this.value);
             };
+=======
+>>>>>>> d1c2b833597b818b3cb76aef0d06ee37537c29dd
             
             var hashString = location.hash.replace('#', '');
             var roomid = params.roomid;
@@ -288,7 +354,7 @@
                 roomid = hashString;
             }
             if(roomid && roomid.length) {
-                document.getElementById('room-id').value = roomid;
+                
                 localStorage.setItem(connection.socketMessageEvent, roomid);
                 // auto-join-room
                 (function reCheckRoomPresence() {
