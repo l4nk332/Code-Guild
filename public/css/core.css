@@ -1477,3 +1477,7 @@ a.firepad-btn:active {
     height: 600px;
 }
 
+#remoteVideo {
+    max-width: 100%;
+    width: 240px;
+}

@@ -95,8 +95,15 @@
                                     <div class="make-center">
                                     <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
                                     </div>
-                                    <div id="local-video"></div>
-                                    <div id="remote-video"></div>
+                                    <video id="remoteVideo" autoplay></video>
+                                     <video id="localVideo" autoplay></video>
+                                    <div>
+                                      <button id="startButton">Start</button>
+                                      <button id="callButton">Call</button>
+                                      <button id="hangupButton">Hang Up</button>
+                                    </div>
+                                   
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -144,12 +151,15 @@
 
         <!-- jQuery  -->
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
         <script src="/js/detect.js"></script>
         <script src="/js/fastclick.js"></script>
         <script src="/js/jquery.slimscroll.js"></script>
         <script src="/js/jquery.blockUI.js"></script>
         <script src="/js/waves.js"></script>
         <script src="/js/wow.min.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/js/adapter.js"></script>
         <script src="/js/jquery.nicescroll.js"></script>
         <script src="/js/jquery.scrollTo.min.js"></script>
     </body>
