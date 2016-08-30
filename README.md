@@ -44,7 +44,13 @@ As soon as a session is instantiated between two users a [signaling server](http
 
 ## Next Steps
 
+**In-browser REPL**
 
+One limitation of *Code-Guild* is the inability to actually execute code. Due to the necessity of supporting a variety of programming languages, this became difficult to implement. As the project continues to evolve a [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) will become a top priority, allowing for coding sessions to be taken one step further.
+
+**Direct Messaging**
+
+Currently when a user recieves a request to connect they only have the option to accept or deny the request. Further utilization of [Socket.io](http://socket.io/) would allow for direct messaging betweeen users to take place before an initial connection is made. This would improve communication between users and the overall User-Experience of *Code-Guild*.
 
 ## Contributors
 
