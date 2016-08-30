@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <title>CodeGuild - {{uniqueRoomId}}</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
+        <script src="/js/jquery.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+        <!-- Load Firebase Project -->
+        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyAHGAcseCSmhX8vIff6T3cuN2KZMYiXrdI",
+            authDomain: "firepad-test-37da6.firebaseapp.com",
+            databaseURL: "https://firepad-test-37da6.firebaseio.com",
+            storageBucket: "firepad-test-37da6.appspot.com",
+          };
+          firebase.initializeApp(config);
+        </script>
+        <!-- CodeMirror -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.10.0/codemirror.css" />
+
+        <!-- Load CodeMirror mode/theme -->
+        <link rel='stylesheet' href="/css/theme/midnight.css" />
+        <script src="/js/mode/javascript.js"></script>
+
+        <!-- Firepad -->
+        <link rel="stylesheet" href="/css/firepad.css" />
+        <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
+        <style>
+        video {
+            object-fit: fill;
+            width: 30%;
+        }
+        button,
+        input,
+        select {
+            font-weight: normal;
+            padding: 2px 4px;
+            text-decoration: none;
+            display: inline-block;
+            text-shadow: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .make-center {
+            text-align: center;
+            padding: 5px 10px;
+        }
+    </style>
+
+        <script src="/js/modernizr.min.js"></script>
+        <script type="../public/js/custom/webRTC.js"></script>
+        <script type="../public/js/custom/indexWebRTC.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="navbar-default">
+                    <div class="text-center">
+                        <a href="index" class="logo">
+                            <i class="zmdi zmdi-toys icon-c-logo"></i><span>Code<span>Guild</span></span>
+                        </a>
+                    </div>
+                </div>
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">Video</h4>
+                                    <div class="text-center m-t-10">
+                                    <div class="make-center">
+                                    <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+                                    </div>
+                                    <div id="videos-container" id="videos">
+                                      <video id="localVideo" autoplay muted></video>
+                                      <video id="remoteVideo" autoplay></video>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">IDE</h4>
+                                    <div class="text-center m-t-10">
+                                       <div id="firepad"></div>
+                                    <script>
+                                    var firepadURL='https://firepad-test-37da6.firebaseio.com/firepads/{{ uniqueRoomid }}'
+                                      var firepadRef = new Firebase('https://firepad-test-37da6.firebaseio.com/firepads/{{ uniqueRoomId }}');
+                                      var codeMirror = CodeMirror(document.getElementById('firepad'), {
+                                            lineWrapping: false,
+                                            mode: "javascript",
+                                            theme: 'midnight',
+                                            smartIndent: true,
+                                            lineNumbers: true,
+                                            fixedGutter: false,
+                                            autofocus: true
+                                        });
+                                      var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror,
+                                          { richTextShortcuts: false, richTextToolbar: false, defaultText: '// Code here...' });
+
+                                    </script>
+                                    <style>
+                                    .firepad {
+                                      width: 80%;
+                                      height: 450px;
+                                      margin: auto;
+                                              }
+                                    </style>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">Chat</h4>
+                                    <div class="text-center m-t-10">
+                                    <input type="text" id="input-text-chat" placeholder="Enter Text Chat">
+                                    <div class="chat-output"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <div class="dropdown pull-right">
+                                    </div>
+                                    <h4 class="header-title m-t-0">FileTransfer</h4>
+                                    <div class="text-center m-t-10">
+                                    <button id="share-file">Share File</button>
+                                    <div id="file-container"></div>
+                                    </div>
+                                </div>
+                            </div><!-- end col -->
+                        </div>
+                    </div>
+               </div>
+        </div>
+
+        <!-- socket.io for signaling -->
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script type="text/javascript"></script>
+        <script>
+
+
+            // ......................................................
+            // .......................UI Code........................
+            // ......................................................
+            window.onload = function() {
+            connection.openOrJoin('{{uniqueRoomId}}', function() {
+                  (connection.sessionid);
+                  console.log('connection sessionid is: ' + connection.sessionid)
+                });
+            connection.autoCloseEntireSession = true;
+            // ......................................................
+            // ................FileSharing/TextChat Code.............
+            // ......................................................
+
+           document.getElementById('share-file').onclick = function() {
+                var fileSelector = new FileSelector();
+                fileSelector.selectSingleFile(function(file) {
+                    connection.send(file);
+                });
+            };
+
+            function appendDIV(event) {
+                var div = document.createElement('div');
+                div.innerHTML = event.data || event;
+                chatContainer.insertBefore(div, chatContainer.firstChild);
+                div.tabIndex = 0;
+                div.focus();
+                document.getElementById('input-text-chat').focus();
+            }
+
+
+            document.getElementById('input-text-chat').onkeyup = function(e) {
+                if (e.keyCode != 13) return;
+                // removing trailing/leading whitespace
+                this.value = this.value.replace(/^\s+|\s+$/g, '');
+                if (!this.value.length) return;
+                connection.send(this.value);
+                appendDIV(this.value);
+                this.value = '';
+            };
+            var chatContainer = document.querySelector('.chat-output');
+            function appendDIV(event) {
+                var div = document.createElement('div');
+                div.innerHTML = event.data || event;
+                chatContainer.insertBefore(div, chatContainer.firstChild);
+                div.tabIndex = 0;
+                div.focus();
+                document.getElementById('input-text-chat').focus();
+            }
+
+
+            // ......................................................
+            // ......................Handling Room-ID................
+            // ......................................................
+            function showRoomURL(roomid) {
+                var roomHashURL = '#' + roomid;
+                var roomQueryStringURL = '?roomid=' + roomid;
+                var html = '<h2>Unique URL for your room:</h2><br>';
+                html += 'Hash URL: <a href="' + roomHashURL + '" target="_blank">' + roomHashURL + '</a>';
+                html += '<br>';
+                html += 'QueryString URL: <a href="' + roomQueryStringURL + '" target="_blank">' + roomQueryStringURL + '</a>';
+                var roomURLsDiv = document.getElementById('room-urls');
+                roomURLsDiv.innerHTML = html;
+                roomURLsDiv.style.display = 'block';
+            }
+            (function() {
+                var params = {},
+                    r = /([^&=]+)=?([^&]*)/g;
+                function d(s) {
+                    return decodeURIComponent(s.replace(/\+/g, ' '));
+                }
+                var match, search = window.location.search;
+                while (match = r.exec(search.substring(1)))
+                    params[d(match[1])] = d(match[2]);
+                window.params = params;
+            })();
+
+            var roomid = '{{uniqueRoomId}}';
+            console.log(roomid);
+            if (localStorage.getItem(connection.socketMessageEvent)) {
+                roomid = localStorage.getItem(connection.socketMessageEvent);
+            } else {
+                roomid = connection.token();
+                console.log(roomid, "THIS IS THE CURRENT ROOMID")
+            }
+            document.getElementById('room-id').value = roomid;
+            document.getElementById('room-id').onkeyup = function() {
+                localStorage.setItem(connection.socketMessageEvent, this.value);
+            };
+
+            var hashString = location.hash.replace('#', '');
+            var roomid = params.roomid;
+            if(!roomid && hashString.length) {
+                roomid = hashString;
+            }
+            if(roomid && roomid.length) {
+
+                localStorage.setItem(connection.socketMessageEvent, roomid);
+                // auto-join-room
+                (function reCheckRoomPresence() {
+                    connection.checkPresence(roomid, function(isRoomExists) {
+                        if(isRoomExists) {
+                            connection.join(roomid);
+                            return;
+                        }
+                        setTimeout(reCheckRoomPresence, 5000);
+                    });
+                })();
+                disableInputButtons();
+            }
+        </script>
+        </script>
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/detect.js"></script>
+        <script src="/js/fastclick.js"></script>
+        <script src="/js/jquery.slimscroll.js"></script>
+        <script src="/js/jquery.blockUI.js"></script>
+        <script src="/js/waves.js"></script>
+        <script src="/js/wow.min.js"></script>
+        <script src="/js/jquery.nicescroll.js"></script>
+        <script src="/js/jquery.scrollTo.min.js"></script>
+    </body>
+</html>
