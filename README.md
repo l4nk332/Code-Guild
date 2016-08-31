@@ -24,7 +24,7 @@ In order to deploy this project you first need to [install npm](https://www.npmj
 
 Once properly cloned or forked run `npm install` to locally install the dependencies for the project.
 
-To locally start the server run `npm start`, visit `http:localhost:9000` in your browser, and you should be off an running with a local instance of Code-Guild!
+To locally start the server run `npm start`, visit `http:localhost:9000` in your browser, and you should be off and running with a local instance of Code-Guild!
 
 ## Challenges
 
