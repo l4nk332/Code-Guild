@@ -4,6 +4,7 @@
 
 ##Here is a demo of *Code-Guild*: [Video Demo](https://www.youtube.com/watch?v=L6IGNKpJl5o)
 
+
 ## Overview
 
 *Code-Guild* is a web-platform that connects developers from around the globe in a live coding environment. *Code-Guild* enables programmers to both teach the languages they are proficient in and learn the languages that interest them. Code review sessions allow developers to get a second opinion on a module of code.
