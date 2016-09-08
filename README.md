@@ -2,7 +2,7 @@
 
 ![Code-Guild screenshot](https://github.com/l4nk332/Code-Guild/blob/master/screenshots/code-guild.png)
 
-Here is a demo of *Code-Guild*: [Video Demo](https://www.youtube.com/watch?v=L6IGNKpJl5o)
+##Here is a demo of *Code-Guild*: [Video Demo](https://www.youtube.com/watch?v=L6IGNKpJl5o)
 
 ## Overview
 
